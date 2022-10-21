@@ -84,45 +84,61 @@
             </div>
         </div>
 
-        <div class="flex justify-end mt-10">
-            <p class="text-white font-semibold">Zaznacz na mapie</p>
-        </div>
-
 {{--Component for found station--}}
-        <div class="flex flex-wrap w-full my-4 py-4 px-2 bg-gray-800 rounded-lg text-white">
-            <div class="w-2/3">
-                <p class="font-semibold">Wrocław Wrocław Główny Wrocław Główny Główny</p>
-                <p class="text-teal-200 mt-2">Ilość odwiedzin: 8</p>
+        <div class="flex flex-wrap my-4 py-4 px-4 bg-gray-800 rounded-lg text-white justify-between">
+            <div class="flex flex-col w-full xl:w-1/2">
+                <p class="font-semibold break-words">Sobienie Kiełczewskie Pierwsze i Przedmieście Szczebrzeszyńskie</p>
+                <p class="text-orange-200 mt-2">Przejechane</p>
             </div>
-            {{--Button for showing found station on the map--}}
-            <a href="#" class="w-1/3">
-                <div class="flex justify-end">
-                    <img class="px-1 rounded hover:bg-gray-600"
-                         src="https://img.icons8.com/quill/50/FFFFFF/experimental-map-quill.png"/>
-                </div>
-            </a>
+
+            <div class="flex flex-row items-center space-x-1">
+                {{--Button for adding station to "traveled by"--}}
+                <a href="#" title="Dodaj do przejechanych">
+                    <img class="rounded hover:bg-gray-600 py-3 px-2"
+                         src="https://img.icons8.com/ios-filled/20/FFBF00/pin--v1.png"/>
+                </a>
+                {{--Button for adding station to "visited"--}}
+                <a href="#" title="Dodaj do odwiedzonych">
+                    <img class="rounded hover:bg-gray-600 py-3 px-2"
+                         src="https://img.icons8.com/ios-filled/20/00FF00/pin--v1.png"/>
+                </a>
+                {{--Button for adding note about travel or timeline post--}}
+                <a href="#" title="Dodaj post lub wycieczkę">
+                    <img class="rounded hover:bg-gray-600 p-2"
+                         src="https://img.icons8.com/quill/30/FFFFFF/experimental-map-quill.png"/>
+                </a>
+            </div>
         </div>
 
-        <div class="flex flex-wrap w-full my-4 py-4 px-2 bg-gray-800 rounded-lg text-white">
-            <div class="w-2/3">
-                <p class="font-semibold">Wrocław Główny</p>
-                <p class="text-teal-200 mt-2">Ilość odwiedzin: 8</p>
+        <div class="flex flex-wrap my-4 py-4 px-4 bg-gray-800 rounded-lg text-white justify-between">
+            <div class="flex flex-col w-full xl:w-1/2">
+                <p class="font-semibold break-words">Wrocław Główny</p>
+                <p class="text-teal-200 mt-2">Ilość odwiedzin: 6</p>
             </div>
-            <a href="#" class="w-1/3">
-                <div class="flex justify-end">
-                    <img class="px-1 rounded hover:bg-gray-600"
-                         src="https://img.icons8.com/quill/50/FFFFFF/experimental-map-quill.png"/>
-                </div>
-            </a>
+
+            <div class="flex flex-row items-center space-x-1">
+                {{--Button for adding station to "traveled by"--}}
+                <a href="#" title="Dodaj do przejechanych">
+                    <img class="rounded hover:bg-gray-600 py-3 px-2"
+                         src="https://img.icons8.com/ios-filled/20/FFBF00/pin--v1.png"/>
+                </a>
+                {{--Button for adding station to "visited"--}}
+                <a href="#" title="Dodaj do odwiedzonych">
+                    <img class="rounded hover:bg-gray-600 py-3 px-2"
+                         src="https://img.icons8.com/ios-filled/20/00FF00/pin--v1.png"/>
+                </a>
+                {{--Button for adding note about travel or timeline post--}}
+                <a href="#" title="Dodaj post lub wycieczkę">
+                    <img class="rounded hover:bg-gray-600 p-2"
+                         src="https://img.icons8.com/quill/30/FFFFFF/experimental-map-quill.png"/>
+                </a>
+            </div>
         </div>
     </div>
 
 {{--Example map--}}
     <div class="hidden sm:block sm:w-1/2 lg:w-2/3 h-screen">
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2499.7933988731024!2d16.147909515758872!3d51.
-                    20445847958652!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x470f128c143643e9%3A0xd13d291bc4044b4c!2sColle
-                    gium%20Witelona%20Uczelnia%20Pa%C5%84stwowa!5e0!3m2!1spl!2spl!4v1649251131301!5m2!1spl!2spl" width="100%" height="100%"
-                style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2505340.308583978!2d16.585088986814473!3d52.16262214296298!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47009964a4640bbb%3A0x97573ca49cc55ea!2sPolska!5e0!3m2!1spl!2spl!4v1666395254578!5m2!1spl!2spl" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
     </div>
 </section>
 </body>
@@ -134,7 +150,7 @@
     const menu = document.getElementById('menu');
 
     document.addEventListener('DOMContentLoaded', () => {
-        menuButton.addEventListener('click', (event) => {
+        menuButton.addEventListener('click', () => {
             dropMenu();
         })
     })
@@ -146,4 +162,3 @@
         }
     }
 </script>
-
