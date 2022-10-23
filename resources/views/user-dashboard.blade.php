@@ -118,7 +118,7 @@
 
         <div id="sidebar-item" class="flex flex-wrap my-4 p-3 bg-gray-800 rounded-lg text-white justify-between">
             <div class="flex flex-col w-1/2">
-                <p id="text-content" class="font-semibold break-words">Wrocław Główny</p>
+                <p class="font-semibold break-words">Wrocław Główny</p>
                 <p class="text-teal-200 mt-2">Ilość odwiedzeń: </p>
             </div>
 
