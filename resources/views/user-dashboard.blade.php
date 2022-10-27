@@ -6,7 +6,7 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script src="https://cdn.tailwindcss.com"></script>
-    <title>Kolejorz</title>
+    <title>Dodawanie wycieczki</title>
 
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.2/dist/leaflet.css" integrity="sha256-sA+zWATbFveLLNqWO2gtiw3HL/lh1giY/Inf1BJ0z14=" crossorigin="" />
     <script src="https://unpkg.com/leaflet@1.9.2/dist/leaflet.js" integrity="sha256-o9N1jGDZrf5tS+Ft4gbIK7mYMipq9lqpVJ91xHSyKhg=" crossorigin=""></script>
@@ -93,71 +93,110 @@
     </div>
 </nav>
 
-<section class="flex mx-auto flex-grow h-[calc(100vh-76px)]">
+<section class="flex flex-col-reverse flex-grow sm:flex-row mx-auto flex-grow h-[calc(100vh-76px)]">
+
     <div class="sidebar bg-gray-600 w-full sm:w-1/2 lg:w-1/3 pt-8 px-8 overflow-auto scrollbar">
-        <div class="flex justify-start">
-            <p class="text-white font-semibold">Szukaj stacji</p>
-        </div>
-        <div class="flex w-full my-2 py-5 px-3 bg-gray-800 rounded-2xl text-white">
-            <div class="w-full flex">
-                <input type="text" class="rounded-2xl bg-gray-600 w-full py-2 mr-2">
-                {{--Button to submit--}}
+        {{--Component for adding tours--}}
+        <div class="mb-4 px-3 pb-4 pt-2 bg-gray-800 rounded-lg text-white justify-between">
+            <div class="flex justify-end">
                 <button>
-                    <img src="https://img.icons8.com/ios-glyphs/30/FFFFFF/search--v1.png"/>
+                    <img class="rounded hover:bg-gray-600 p-1" src="https://img.icons8.com/ios/20/9AF4EA/close-window.png"/>
                 </button>
             </div>
+
+            <div class="flex flex-row">
+                <div class="flex flex-col space-y-1 w-9/12">
+                    <p class="text-teal-200">Stacja początkowa:</p>
+                    <p class="font-semibold">Nowy Dwor Mazowiecki (Nowy Dwór Mazowiecki)</p>
+                </div>
+                <button class="flex justify-end items-center mt-6 w-3/12" title="Usuń stację">
+                    <img class="rounded hover:bg-gray-600 py-2 px-1" src="https://img.icons8.com/ios/20/FFFFFF/delete--v1.png"/>
+                </button>
+            </div>
+            <div class="flex flex-row">
+                <div class="flex flex-col space-y-1 my-2 w-9/12">
+                    <p class="text-teal-200">Przez:</p>
+                    <p class="font-semibold">Aleksandrow Kujawski (Aleksandrów Kujawski)</p>
+                </div>
+                <button class="flex justify-end items-center mt-6 w-3/12" title="Usuń stację">
+                    <img class="rounded hover:bg-gray-600 py-2 px-1" src="https://img.icons8.com/ios/20/FFFFFF/delete--v1.png"/>
+                </button>
+            </div>
+            <div class="flex flex-row">
+                <div class="flex flex-col space-y-1 my-2 w-9/12">
+                    <p class="text-teal-200">Stacja końcowa:</p>
+                    <p class="font-semibold">Wałbrzych Miasto</p>
+                </div>
+                <button class="flex justify-end items-center mt-6 w-3/12" title="Usuń stację">
+                    <img class="rounded hover:bg-gray-600 py-2 px-1" src="https://img.icons8.com/ios/20/FFFFFF/delete--v1.png"/>
+                </button>
+            </div>
+
+            <div class="flex flex-wrap flex-col items-start">
+                <button class="px-3 py-2 bg-teal-400 hover:bg-teal-500 rounded-lg font-semibold shadow-inner shadow-2xl mt-4">Dodaj wycieczkę</button>
+                <button class="px-3 py-2 bg-teal-700 hover:bg-teal-800 rounded-lg font-semibold shadow-inner shadow-2xl mt-3">Dodaj post</button>
+            </div>
+
+        </div>
+
+        <div class="flex w-full my-2 py-5 px-3 bg-gray-800 rounded-lg text-white">
+            <input type="text" placeholder="Szukaj stacji" class="rounded-lg bg-gray-600 w-full py-2 mr-2 px-2">
+            {{--Button to submit--}}
+            <button>
+                <img src="https://img.icons8.com/ios-glyphs/30/FFFFFF/search--v1.png"/>
+            </button>
         </div>
 
         {{--Component for found station--}}
 
         <div class="flex flex-col my-4 p-3 bg-gray-800 rounded-lg text-white">
-            <div class="flex flex-col space-y-2">
-                <p class="font-semibold text-xl">Przedmieście Szczebrzeszyńskie</p>
+            <div class="flex flex-col space-y-2 break-words">
+                <p class="font-semibold lg:text-xl">Przedmieście Szczebrzeszyńskie</p>
                 <p class="text-orange-200">Przejechane</p>
             </div>
 
-            <div class="flex items-center justify-end space-x-3 sm:space-x-0">
+            <div class="flex items-center justify-end sm:space-x-0">
                 {{--Button for adding station to "traveled by"--}}
-                <a href="#" title="Dodaj do przejechanych">
+                <button title="Dodaj do przejechanych">
                     <img class="rounded hover:bg-gray-600 py-3 px-2"
                          src="https://img.icons8.com/ios-filled/20/FFBF00/pin--v1.png"/>
-                </a>
+                </button>
                 {{--Button for adding station to "visited"--}}
-                <a href="#" title="Dodaj do odwiedzonych">
+                <button title="Dodaj do odwiedzonych">
                     <img class="rounded hover:bg-gray-600 py-3 px-2"
-                         src="https://img.icons8.com/ios-filled/20/00FF00/pin--v1.png"/>
-                </a>
+                         src="https://img.icons8.com/ios-filled/20/14B8A6/pin--v1.png"/>
+                </button>
                 {{--Button for adding note about travel or timeline post--}}
-                <a href="#" title="Dodaj post lub wycieczkę">
+                <button title="Dodaj post lub wycieczkę">
                     <img class="rounded hover:bg-gray-600 p-2"
                          src="https://img.icons8.com/quill/30/FFFFFF/experimental-map-quill.png"/>
-                </a>
+                </button>
             </div>
         </div>
 
         {{--Second one with different status--}}
         <div class="flex flex-col my-4 p-3 bg-gray-800 rounded-lg text-white">
             <div class="flex flex-col space-y-2">
-                <p class="font-semibold text-xl">Wrocław Główny</p>
+                <p class="font-semibold lg:text-xl">Wrocław Główny</p>
                 <p class="text-teal-200">Ilość odwiedzeń: </p>
             </div>
 
             <div class="flex items-center justify-end space-x-3 sm:space-x-0">
                 {{--Button for adding station to "traveled by"--}}
-                <a href="#" title="Dodaj do przejechanych">
+                <button title="Dodaj do przejechanych">
                     <img class="rounded hover:bg-gray-600 py-3 px-2"
                          src="https://img.icons8.com/ios-filled/20/FFBF00/pin--v1.png"/>
-                </a>
+                </button>
                 {{--Button for adding station to "visited"--}}
-                <a href="#" title="Dodaj do odwiedzonych">
+                <button title="Dodaj do odwiedzonych">
                     <img class="rounded hover:bg-gray-600 py-3 px-2"
-                         src="https://img.icons8.com/ios-filled/20/00FF00/pin--v1.png"/>
-                </a>
+                         src="https://img.icons8.com/ios-filled/20/14B8A6/pin--v1.png"/>
+                </button>
                 {{--Button for adding note about travel or timeline post--}}
-                <a href="#" title="Dodaj post lub wycieczkę">
+                <button title="Dodaj post lub wycieczkę">
                     <img class="rounded hover:bg-gray-600 p-2"
                          src="https://img.icons8.com/quill/30/FFFFFF/experimental-map-quill.png"/>
-                </a>
+                </button>
             </div>
         </div>
 
@@ -165,11 +204,11 @@
         <div class="flex flex-col my-4 p-3 bg-gradient-to-r from-yellow-600 to-yellow-500 rounded-lg text-white space-y-2">
             <div class="flex flex-col space-y-2">
                 <p class="font-semibold text-gray-900">Dodać stację do przejechanych?</p>
-                <p class="font-semibold text-xl">Przedmieście Szczebrzeszyńskie</p>
+                <p class="font-semibold lg:text-xl">Przedmieście Szczebrzeszyńskie</p>
             </div>
 
-            <div class="flex items-center justify-end space-x-3">
-                <button class="px-4 py-2 bg-yellow-600 hover:bg-yellow-700 rounded-lg font-semibold shadow-inner shadow-2xl">Dodaj</button>
+            <div class="flex flex-wrap items-center justify-end space-x-3">
+                <button class="px-3 py-2 bg-yellow-600 hover:bg-yellow-700 rounded-lg font-semibold shadow-inner shadow-2xl">Dodaj</button>
                 <button class="px-1 font-semibold hover:text-orange-100">Wstecz</button>
             </div>
         </div>
@@ -177,32 +216,31 @@
         <div class="flex flex-col my-4 p-3 bg-gradient-to-r from-yellow-600 to-yellow-500 rounded-lg text-white space-y-2">
             <div class="flex flex-col space-y-2">
                 <p class="font-semibold text-gray-900">Usunąć stację z przejechanych?</p>
-                <p class="font-semibold text-xl">Przedmieście Szczebrzeszyńskie</p>
+                <p class="font-semibold lg:text-xl">Przedmieście Szczebrzeszyńskie</p>
             </div>
 
-            <div class="flex items-center justify-end space-x-3">
-                <button class="px-4 py-2 bg-yellow-600 hover:bg-yellow-700 rounded-lg font-semibold shadow-inner shadow-2xl">Usuń</button>
+            <div class="flex flex-wrap items-center justify-end space-x-3">
+                <button class="px-3 py-2 bg-yellow-600 hover:bg-yellow-700 rounded-lg font-semibold shadow-inner shadow-2xl">Usuń</button>
                 <button class="px-1 font-semibold hover:text-orange-100">Wstecz</button>
             </div>
         </div>
 
         {{--Dialogue window for "visited"--}}
-        <div class="flex flex-col my-4 p-3 bg-gradient-to-r from-green-600 to-green-400 rounded-lg text-white space-y-2">
+        <div class="flex flex-col my-4 p-3 bg-gradient-to-r from-teal-600 to-teal-400 rounded-lg text-white space-y-2">
             <div class="flex flex-col space-y-2">
                 <p class="font-semibold text-gray-900">Dodać stację do odwiedzonych?</p>
-                <p class="font-semibold text-xl">Wrocław Główny</p>
+                <p class="font-semibold lg:text-xl">Wrocław Główny</p>
             </div>
 
-            <div class="flex items-center justify-end space-x-3">
-                <button class="px-4 py-2 bg-green-600 hover:bg-green-700 rounded-lg font-semibold shadow-inner shadow-2xl">Dodaj</button>
-                <button class="px-1 font-semibold hover:text-green-100">Wstecz</button>
+            <div class="flex flex-wrap items-center justify-end space-x-3">
+                <button class="px-3 py-2 bg-teal-600 hover:bg-teal-700 rounded-lg font-semibold shadow-inner shadow-2xl">Dodaj</button>
+                <button class="px-1 font-semibold hover:text-teal-100">Wstecz</button>
             </div>
         </div>
-
     </div>
 
     {{--Example map--}}
-    <div id="map" class="hidden sm:block sm:w-1/2 lg:w-2/3"></div>
+    <div id="map" class="p-48 sm:w-1/2 lg:w-2/3"></div>
 
 </section>
 </body>
