@@ -19,17 +19,14 @@
                 width: 15px;
                 height: 15px;
             }
-
             .scrollbar::-webkit-scrollbar-track {
                 background: #374151;
             }
-
             .scrollbar::-webkit-scrollbar-thumb {
                 background: #1f2937;
                 border-radius: 20vh;
                 height: 5vh;
             }
-
             .scrollbar::-webkit-scrollbar-thumb:hover {
                 background: #111827;
             }
@@ -163,7 +160,7 @@
                 </a>
             </div>
         </div>
-        
+
         {{--Dialogue windows for "travelled by"--}}
         <div class="flex flex-col my-4 p-3 bg-gradient-to-r from-yellow-600 to-yellow-500 rounded-lg text-white space-y-2">
             <div class="flex flex-col space-y-2">

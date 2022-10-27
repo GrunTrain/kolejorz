@@ -52,6 +52,5 @@ function mapCSV(data){
     })
 
     markers.addTo(map)
-
     map.fitBounds(markers.getBounds())
 }
