@@ -48,7 +48,6 @@ function mapCSV(data){
             '<p class="font-semibold text-xl">' +
             item.Title +
             '</p>'
-
         )
     })
 
