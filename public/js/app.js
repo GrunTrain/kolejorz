@@ -50,7 +50,6 @@ function mapCSV(data){
             '</p>'
 
         )
-
     })
 
     markers.addTo(map)
