@@ -13,7 +13,6 @@
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/papaparse@5.3.0/papaparse.min.js"></script>
     <script src="{{ asset('/js/app.js') }}" type="module"></script>
-
     <style>
         @layer utilities {
             .scrollbar::-webkit-scrollbar {
@@ -99,7 +98,6 @@
 
 <section class="flex mx-auto flex-grow h-[calc(100vh-76px)]">
     <div class="sidebar bg-gray-600 w-full sm:w-1/2 lg:w-1/3 pt-8 px-8 overflow-auto scrollbar">
-
         <div class="flex justify-start">
             <p class="text-white font-semibold">Szukaj stacji</p>
         </div>
@@ -114,6 +112,7 @@
         </div>
 
         {{--Component for found station--}}
+
         <div class="flex flex-col my-4 p-3 bg-gray-800 rounded-lg text-white">
             <div class="flex flex-col space-y-2">
                 <p class="font-semibold text-xl">Przedmieście Szczebrzeszyńskie</p>
@@ -207,6 +206,7 @@
 
     {{--Example map--}}
     <div id="map" class="hidden sm:block sm:w-1/2 lg:w-2/3"></div>
+
 </section>
 </body>
 </html>
