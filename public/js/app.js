@@ -42,8 +42,14 @@ function mapCSV(data){
         markers.addLayer(marker)
 
         //sends station names to the sidebar
-        // $('.sidebar').append('<div class="sidebar-item">'+item.Title+'</div>')
+        $('.sidebar').append(
+            '<div class="flex flex-col my-4 p-3 bg-gray-800 rounded-lg text-white">' +
+            '<div class="flex flex-col space-y-2">' +
+            '<p class="font-semibold text-xl">' +
+            item.Title +
+            '</p>'
 
+        )
     })
 
     markers.addTo(map)
