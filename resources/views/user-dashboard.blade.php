@@ -7,10 +7,39 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script src="https://cdn.tailwindcss.com"></script>
     <title>Kolejorz</title>
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.2/dist/leaflet.css" integrity="sha256-sA+zWATbFveLLNqWO2gtiw3HL/lh1giY/Inf1BJ0z14=" crossorigin="" />
+    <script src="https://unpkg.com/leaflet@1.9.2/dist/leaflet.js" integrity="sha256-o9N1jGDZrf5tS+Ft4gbIK7mYMipq9lqpVJ91xHSyKhg=" crossorigin=""></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/papaparse@5.3.0/papaparse.min.js"></script>
+    <script src="{{ asset('/js/app.js') }}" type="module"></script>
+
+    <style>
+        @layer utilities {
+            .scrollbar::-webkit-scrollbar {
+                width: 15px;
+                height: 15px;
+            }
+
+            .scrollbar::-webkit-scrollbar-track {
+                background: #374151;
+            }
+
+            .scrollbar::-webkit-scrollbar-thumb {
+                background: #1f2937;
+                border-radius: 20vh;
+                height: 5vh;
+            }
+
+            .scrollbar::-webkit-scrollbar-thumb:hover {
+                background: #111827;
+            }
+        }
+    </style>
 </head>
 <body>
 
-<nav class="fixed w-full flex items-center justify-between flex-wrap bg-gray-800 px-8">
+<nav class="static w-full flex items-center justify-between flex-wrap bg-gray-800 px-8">
     <div class="flex items-center text-white mr-6 pt-4 pb-5">
         <a href="#"
            class="flex inline-block"
@@ -68,8 +97,8 @@
     </div>
 </nav>
 
-<section class="flex mx-auto pt-16 h-screen">
-    <div class="bg-gray-600 w-full sm:w-1/2 lg:w-1/3 pt-8 px-8">
+<section class="flex mx-auto flex-grow h-[calc(100vh-76px)]">
+    <div class="sidebar bg-gray-600 w-full sm:w-1/2 lg:w-1/3 pt-8 px-8 overflow-auto scrollbar">
 
         <div class="flex justify-start">
             <p class="text-white font-semibold">Szukaj stacji</p>
@@ -84,14 +113,14 @@
             </div>
         </div>
 
-{{--Component for found station--}}
-        <div class="flex flex-wrap my-4 p-3 bg-gray-800 rounded-lg text-white justify-between">
-            <div class="flex flex-col w-1/2">
-                <p class="font-semibold break-words">Przedmieście Szczebrzeszyńskie</p>
-                <p class="text-orange-200 mt-2">Przejechane</p>
+        {{--Component for found station--}}
+        <div class="flex flex-col my-4 p-3 bg-gray-800 rounded-lg text-white">
+            <div class="flex flex-col space-y-2">
+                <p class="font-semibold text-xl">Przedmieście Szczebrzeszyńskie</p>
+                <p class="text-orange-200">Przejechane</p>
             </div>
 
-            <div class="flex flex-row items-center w-1/2 justify-end space-x-3 sm:space-x-0">
+            <div class="flex items-center justify-end space-x-3 sm:space-x-0">
                 {{--Button for adding station to "traveled by"--}}
                 <a href="#" title="Dodaj do przejechanych">
                     <img class="rounded hover:bg-gray-600 py-3 px-2"
@@ -110,13 +139,15 @@
             </div>
         </div>
 
-        <div class="flex flex-wrap my-4 p-3 bg-gray-800 rounded-lg text-white justify-between">
-            <div class="flex flex-col w-1/2">
-                <p class="font-semibold break-words">Wrocław Główny</p>
-                <p class="text-teal-200 mt-2">Ilość odwiedzeń: </p>
+
+        {{--Second one with different status--}}
+        <div class="flex flex-col my-4 p-3 bg-gray-800 rounded-lg text-white">
+            <div class="flex flex-col space-y-2">
+                <p class="font-semibold text-xl">Wrocław Główny</p>
+                <p class="text-teal-200">Ilość odwiedzeń: </p>
             </div>
 
-            <div class="flex flex-row items-center w-1/2 justify-end space-x-3 sm:space-x-0">
+            <div class="flex items-center justify-end space-x-3 sm:space-x-0">
                 {{--Button for adding station to "traveled by"--}}
                 <a href="#" title="Dodaj do przejechanych">
                     <img class="rounded hover:bg-gray-600 py-3 px-2"
@@ -134,12 +165,50 @@
                 </a>
             </div>
         </div>
+
+
+        {{--Dialogue windows for "travelled by"--}}
+        <div class="flex flex-col my-4 p-3 bg-gradient-to-r from-yellow-600 to-yellow-500 rounded-lg text-white space-y-2">
+            <div class="flex flex-col space-y-2">
+                <p class="font-semibold text-gray-900">Dodać stację do przejechanych?</p>
+                <p class="font-semibold text-xl">Przedmieście Szczebrzeszyńskie</p>
+            </div>
+
+            <div class="flex items-center justify-end space-x-3">
+                <button class="px-4 py-2 bg-yellow-600 hover:bg-yellow-700 rounded-lg font-semibold shadow-inner shadow-2xl">Dodaj</button>
+                <button class="px-1 font-semibold hover:text-orange-100">Wstecz</button>
+            </div>
+        </div>
+
+        <div class="flex flex-col my-4 p-3 bg-gradient-to-r from-yellow-600 to-yellow-500 rounded-lg text-white space-y-2">
+            <div class="flex flex-col space-y-2">
+                <p class="font-semibold text-gray-900">Usunąć stację z przejechanych?</p>
+                <p class="font-semibold text-xl">Przedmieście Szczebrzeszyńskie</p>
+            </div>
+
+            <div class="flex items-center justify-end space-x-3">
+                <button class="px-4 py-2 bg-yellow-600 hover:bg-yellow-700 rounded-lg font-semibold shadow-inner shadow-2xl">Usuń</button>
+                <button class="px-1 font-semibold hover:text-orange-100">Wstecz</button>
+            </div>
+        </div>
+
+        {{--Dialogue window for "visited"--}}
+        <div class="flex flex-col my-4 p-3 bg-gradient-to-r from-green-600 to-green-400 rounded-lg text-white space-y-2">
+            <div class="flex flex-col space-y-2">
+                <p class="font-semibold text-gray-900">Dodać stację do odwiedzonych?</p>
+                <p class="font-semibold text-xl">Wrocław Główny</p>
+            </div>
+
+            <div class="flex items-center justify-end space-x-3">
+                <button class="px-4 py-2 bg-green-600 hover:bg-green-700 rounded-lg font-semibold shadow-inner shadow-2xl">Dodaj</button>
+                <button class="px-1 font-semibold hover:text-green-100">Wstecz</button>
+            </div>
+        </div>
+
     </div>
 
-{{--Example map--}}
-    <div class="hidden sm:block sm:w-1/2 lg:w-2/3">
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2505340.308583978!2d16.585088986814473!3d52.16262214296298!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47009964a4640bbb%3A0x97573ca49cc55ea!2sPolska!5e0!3m2!1spl!2spl!4v1666395254578!5m2!1spl!2spl" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-    </div>
+    {{--Example map--}}
+    <div id="map" class="hidden sm:block sm:w-1/2 lg:w-2/3"></div>
 </section>
 </body>
 </html>
