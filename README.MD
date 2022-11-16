@@ -19,3 +19,8 @@
 
 ## 6. Generate key
 `./vendor/bin/sail artisan key:generate`
+
+## To add Vue.js
+`npm install vue@next`
+<br>
+`npm install @vitejs/plugin-vue`
