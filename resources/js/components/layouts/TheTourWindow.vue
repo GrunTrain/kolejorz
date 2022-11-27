@@ -34,17 +34,20 @@
             </button>
         </div>
 
-        <div class="flex flex-wrap flex-col items-start">
-            <button class="px-3 py-2 bg-teal-400 hover:bg-teal-500 rounded-lg font-semibold shadow-inner shadow-2xl mt-4">Dodaj wycieczkę</button>
-            <button class="px-3 py-2 bg-teal-700 hover:bg-teal-800 rounded-lg font-semibold shadow-inner shadow-2xl mt-3">Dodaj post</button>
+        <div class="flex flex-wrap flex-col items-center">
+            <base-button class="bg-teal-400 hover:bg-teal-500 w-2/3 lg:w-7/12">Dodaj wycieczkę</base-button>
+            <base-button class="bg-teal-600 hover:bg-teal-700 w-2/3 lg:w-7/12">Dodaj post</base-button>
         </div>
 
     </div>
 </template>
 
 <script>
+
 export default {
-    name: "TheTourWindow"
+    name: "TheTourWindow",
+    components: {},
+
 }
 </script>
 

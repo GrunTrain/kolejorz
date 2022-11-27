@@ -13,4 +13,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::view('/', 'user-dashboard');
+Route::get('{any}', function () {
+    return view('app');
+})->where('any', '.*');
