@@ -57,7 +57,7 @@
                 </div>
 
                 <div class="mt-3 text-xs flex justify-between items-center text-white">
-                    <a href="#">Masz już konto?</a>
+                    <router-link to="/login">Masz już konto?</router-link>
                 </div>
             </div>
 
