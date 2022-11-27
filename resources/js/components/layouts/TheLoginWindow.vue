@@ -47,7 +47,7 @@
                 </div>
 
                 <div class="mt-3 text-xs flex justify-between items-center text-white">
-                    <a href="#">Nie masz jeszcze konta?</a>
+                    <router-link to="/register">Nie masz jeszcze konta?</router-link>
                 </div>
             </div>
 
