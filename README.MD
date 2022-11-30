@@ -20,7 +20,7 @@
 ## 6. Generate key
 `./vendor/bin/sail artisan key:generate`
 
-## To add Vue.js
+## 7. To add Vue.js
 `npm install vue@next`
 <br>
 `npm install @vitejs/plugin-vue`
@@ -28,3 +28,6 @@
 `npm install vue-router@next`
 <br>
 `npm i -D @vue-leaflet/vue-leaflet`
+
+## 8. Install axios
+`npm install axios`
