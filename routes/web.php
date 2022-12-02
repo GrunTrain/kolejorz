@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\UserController;
+use App\Http\Controllers\Auth\LoginController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,7 +14,9 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::post('/store/user', [UserController::class, "store"]);
+Route::post('/user/register', [UserController::class, "store"]);
+Route::post('/user/login', [LoginController::class, "login"]);
+Route::post('/login', [LoginController::class, "login"])->name("login");
 Route::get('{any}', function () {
     return view('app');
 })->where('any', '.*');

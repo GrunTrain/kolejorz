@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Auth\LoginController;
+use Exception;
 
 class UserController extends Controller
 {
@@ -26,12 +28,16 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
+        if ($request->password != $request->repeatPassword) {
+            throw new Exception("Passwords are not the same!");
+        }
+
         $user = new User;
         $user->email = $request->input('email');
         $user->password = bcrypt($request->input('password'));
 
         $user->save();
-        return "dupa";
+        return redirect(route("login", ['user' => $user]));
     }
 
     /**
