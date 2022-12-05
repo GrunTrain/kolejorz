@@ -46,9 +46,7 @@
                 </button>
 
                 <button class="bg-white border py-2 w-full rounded-xl mt-5  justify-center items-center flex align-self:center text-sm hover:scale-105 duration-300 text-[#002D74]">
-
                     <img class="mr-3" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="25px" src="https://cdn-icons-png.flaticon.com/512/3670/3670032.png">
-
                     Kontynuuj przez Facebook
                 </button>
 
