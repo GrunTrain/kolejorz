@@ -1,11 +1,6 @@
 <template>
     <section class="flex flex-col-reverse flex-grow sm:flex-row mx-auto sm:h-[calc(100vh-76px)]">
-        <div class="sidebar bg-gray-600 w-full sm:w-1/2 lg:w-1/3 pt-8 px-8 overflow-auto scrollbar">
-            <the-search-window></the-search-window>
-            <base-card #title v-for="station in stations">
-                {{ station.title }}
-            </base-card>
-        </div>
+        <the-list></the-list>
         <div class="sm:w-1/2 lg:w-2/3 h-96 sm:h-[calc(100vh-76px)]">
             <the-map></the-map>
         </div>
@@ -13,26 +8,25 @@
 </template>
 
 <script>
-
-import TheSearchWindow from "@/components/layouts/TheSearchWindow.vue";
+import TheList from "../components/layouts/TheList.vue";
 import stationsData from "@/stations.json";
 
 export default {
     components: {
-        TheSearchWindow,
+        TheList,
     },
 
     data() {
         return {
-            stations: stationsData
+            stations: stationsData,
         }
     },
 
     provide() {
         return {
-            stations: stationsData
+            stations: stationsData,
         }
-    }
+    },
 }
 </script>
 

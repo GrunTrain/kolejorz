@@ -2,8 +2,8 @@ import {createRouter, createWebHistory} from 'vue-router';
 
 import TheMainPage from "./pages/TheMainPage.vue";
 import NotFound from "./pages/NotFound.vue";
-import TheLoginWindow from "./components/layouts/TheLoginWindow.vue";
-import TheRegisterWindow from "./components/layouts/TheRegisterWindow.vue";
+import TheLoginWindow from "./pages/TheLoginWindow.vue";
+import TheRegisterWindow from "./pages/TheRegisterWindow.vue";
 
 const router = createRouter({
     history: createWebHistory(),
