@@ -10,6 +10,7 @@
         <l-tile-layer :url="url" :attribution="attribution"></l-tile-layer>
 
         <l-circle-marker
+
             v-for="station in stations"
             :lat-lng="[station.lat, station.lon]"
 
@@ -20,6 +21,7 @@
             :fillOpacity="0.8"
             :stroke="false"
 
+            @click="$emit('set-station-marker', station.title)"
         >
         <l-tooltip>
             {{ station.title }}
@@ -47,6 +49,7 @@ import "leaflet/dist/leaflet.css";
 
 export default {
     inject: ['stations'],
+    emits: ['set-station-from-map'],
 
     components: {
         LMap,
@@ -65,9 +68,7 @@ export default {
             url: 'https://api.maptiler.com/maps/basic-v2/{z}/{x}/{y}.png?key=3jWGVfYX2MWCGk1C4FEu',
             attribution:
                 '&copy; <a target="_blank" href="http://osm.org/copyright">OpenStreetMap</a> contributors',
-
             center: [52.0693267, 19.4781225],
-
             zoom: 6.5,
         };
     },

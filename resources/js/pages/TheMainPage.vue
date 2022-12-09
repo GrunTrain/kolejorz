@@ -1,8 +1,8 @@
 <template>
     <section class="flex flex-col-reverse flex-grow sm:flex-row mx-auto sm:h-[calc(100vh-76px)]">
-        <the-list></the-list>
+        <the-list :marker="stationMarker"></the-list>
         <div class="sm:w-1/2 lg:w-2/3 h-96 sm:h-[calc(100vh-76px)]">
-            <the-map></the-map>
+            <the-map @set-station-marker="getStationMarker"></the-map>
         </div>
     </section>
 </template>
@@ -19,14 +19,22 @@ export default {
     data() {
         return {
             stations: stationsData,
+            stationMarker: ''
         }
+    },
+
+    methods: {
+        getStationMarker(stationTitle) {
+            this.stationMarker = stationTitle;
+        },
     },
 
     provide() {
         return {
-            stations: stationsData,
+            stations: this.stations,
         }
     },
 }
+
 </script>
 

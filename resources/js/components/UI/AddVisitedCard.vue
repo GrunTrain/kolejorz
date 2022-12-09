@@ -27,7 +27,7 @@ import axios from "axios";
 
 export default {
     props: ['station'],
-    emits: ['set-component'],
+    emits: ['set-component', 'pass-alert'],
 
     data() {
         return {
@@ -36,12 +36,19 @@ export default {
                 name: this.station.title,
                 status: 'odwiedzona'
             },
+            alert: ''
         }
     },
+
     methods: {
         insertStation() {
-            axios.post('/api/stations', this.stationData);
-            this.$emit('set-component', 'base-card');
+            axios.post('/api/stations', this.stationData)
+                .then(response => {
+                    this.alert = response.data.alert;
+
+                    this.$emit('pass-alert', this.alert);
+                    this.$emit('set-component', 'base-card');
+                })
         }
     }
 }

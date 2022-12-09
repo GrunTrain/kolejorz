@@ -1,4 +1,7 @@
 <template>
+    <alert-pop-up v-if="alert">
+        {{ alert }}
+    </alert-pop-up>
     <div
         v-if="selectedComponent === 'base-card'"
         class="flex flex-col my-4 p-3 bg-gray-800 rounded-lg text-white">
@@ -28,10 +31,10 @@
         </div>
     </div>
 
-    <add-travelled-card v-if="selectedComponent === 'add-travelled-card'" :station="station" @set-component="setSelectedComponent">
+    <add-travelled-card v-if="selectedComponent === 'add-travelled-card'" :station="station" @set-component="setSelectedComponent" @pass-alert="showAlert">
     </add-travelled-card>
 
-    <add-visited-card v-if="selectedComponent === 'add-visited-card'" :station="station" @set-component="setSelectedComponent">
+    <add-visited-card v-if="selectedComponent === 'add-visited-card'" :station="station" @set-component="setSelectedComponent" @pass-alert="showAlert">
     </add-visited-card>
 
 </template>
@@ -39,23 +42,33 @@
 <script>
 import AddTravelledCard from "@/components/UI/AddTravelledCard.vue";
 import AddVisitedCard from "../UI/AddVisitedCard.vue";
+import AlertPopUp from "./AlertPopUp.vue";
 
 export default {
     props: ['station'],
     components: {
+        AlertPopUp,
         AddVisitedCard,
         AddTravelledCard
     },
     data() {
         return {
             selectedComponent: 'base-card',
-            userStations: []
+            userStations: [],
+            alert: ''
         }
     },
     methods: {
         setSelectedComponent(component) {
             this.selectedComponent = component;
         },
+        showAlert(alert) {
+            this.alert = alert;
+            setTimeout(this.hideAlert, 2000);
+        },
+        hideAlert() {
+            this.alert = '';
+        }
     },
 }
 </script>

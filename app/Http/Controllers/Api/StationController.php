@@ -16,12 +16,23 @@ class  StationController extends Controller
 
     public function store(Request $request)
     {
-        $station = Station::updateOrCreate([
-            'id' => $request->input('id'),
-            'name' => $request->input('name'),
-            'status' => $request->input('status'),
-        ]);
-
-        return $station;
+        if (Station::where('id', '=',  $request->input('id'))
+                    ->where('status', '=', $request->input('status'))
+                    ->exists()) {
+            $status = ($request->input('status'));
+            return response()->json([
+                'alert' => "Wybrana stacja ma już status - $status"
+            ]);
+        }
+        else {
+            Station::updateOrCreate([
+                'id' => $request->input('id'),
+                'name' => $request->input('name'),
+                'status' => $request->input('status'),
+            ]);
+            return response()->json([
+                'alert' => "Dodano status stacji!"
+            ]);
+        }
     }
 }
