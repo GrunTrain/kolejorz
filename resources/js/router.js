@@ -14,7 +14,6 @@ const router = createRouter({
         {path: '/my-stations', component: MyStations},
         {path: '/login', component: LoginPage},
         {path: '/register', component: RegisterPage},
-
         {path: '/:notFound(.*)', component: NotFound},
     ]
 });
