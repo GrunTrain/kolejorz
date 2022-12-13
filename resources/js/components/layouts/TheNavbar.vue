@@ -23,12 +23,12 @@
             :class="menuIsDropped ? 'block' : 'hidden'"
             class="w-full flex-grow lg:flex lg:items-center lg:w-auto lg:border-0 border-t-2 border-teal-200 pb-2 lg:pb-0">
             <div class="lg:flex-grow">
-                <a href="#" class="block mt-6 lg:inline-block lg:mt-0 text-teal-200 lg:ml-12 font-semibold hover:text-teal-100">
+                <router-link to="/" class="block mt-6 lg:inline-block lg:mt-0 text-teal-200 lg:ml-12 font-semibold hover:text-teal-100">
                     Wszystkie stacje
-                </a>
-                <a href="#" class="block mt-6 lg:inline-block lg:mt-0 text-teal-200 lg:ml-12 font-semibold hover:text-teal-100">
+                </router-link>
+                <router-link to="/my-stations" class="block mt-6 lg:inline-block lg:mt-0 text-teal-200 lg:ml-12 font-semibold hover:text-teal-100">
                     Moje stacje
-                </a>
+                </router-link>
                 <a href="#" class="block mt-6 lg:inline-block lg:mt-0 text-teal-200 lg:ml-12 font-semibold hover:text-teal-100">
                     Moje wycieczki
                 </a>
@@ -44,7 +44,7 @@
                 </router-link>
             </div>
             <div>
-                <router-link to="register" class="inline-block flex justify-left lg:justify-center lg:w-28 text-sm lg:ml-4 lg:px-2 py-2 lg:border rounded text-white lg:border-white lg:hover:bg-gray-600 lg:mt-0 hover:font-semibold lg:hover:font-normal">
+                <router-link to="/register" class="inline-block flex justify-left lg:justify-center lg:w-28 text-sm lg:ml-4 lg:px-2 py-2 lg:border rounded text-white lg:border-white lg:hover:bg-gray-600 lg:mt-0 hover:font-semibold lg:hover:font-normal">
                     <img
                         class="lg:hidden inline-block mr-2"
                         src="https://img.icons8.com/ios-glyphs/20/20/FFFFFF/add-user-male.png"
@@ -58,7 +58,6 @@
 
 <script>
 export default {
-    name: "TheNavbar",
     data() {
         return {
             menuIsDropped: false,
@@ -71,7 +70,3 @@ export default {
     }
 }
 </script>
-
-<style scoped>
-
-</style>

@@ -3,7 +3,7 @@
         <div class="flex flex-col space-y-2">
             <p class="font-semibold text-gray-900">Dodać stację do odwiedzonych?</p>
             <p class="font-semibold text-lg">
-                {{ this.station.title }}
+                {{ station.title }}
             </p>
         </div>
 
@@ -14,7 +14,7 @@
                 Dodaj
             </button>
             <button
-                @click="$emit('set-component', 'base-card')"
+                @click="$emit('set-component', 'all-station-dashboard')"
                 class="px-1 font-semibold hover:text-green-100">
                 Wstecz
             </button>
@@ -33,7 +33,9 @@ export default {
         return {
             stationData: {
                 id: this.station.idStr,
-                name: this.station.title,
+                title: this.station.title,
+                lat: this.station.lat,
+                lon: this.station.lon,
                 status: 'odwiedzona'
             },
             alert: ''
@@ -47,7 +49,7 @@ export default {
                     this.alert = response.data.alert;
 
                     this.$emit('pass-alert', this.alert);
-                    this.$emit('set-component', 'base-card');
+                    this.$emit('set-component', 'all-station-dashboard');
                 })
         }
     }

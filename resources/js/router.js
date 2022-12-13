@@ -1,17 +1,19 @@
 import {createRouter, createWebHistory} from 'vue-router';
 
-import TheMainPage from "./pages/TheMainPage.vue";
 import NotFound from "./pages/NotFound.vue";
-import TheLoginWindow from "./pages/TheLoginWindow.vue";
-import TheRegisterWindow from "./pages/TheRegisterWindow.vue";
+import LoginPage from "./pages/LoginPage.vue";
+import RegisterPage from "./pages/RegisterPage.vue";
+import MyStations from "./pages/MyStations.vue";
+import AllStations from "./pages/AllStations.vue";
 
 const router = createRouter({
     history: createWebHistory(),
     routes: [
-        {path: '/', component: TheMainPage},
-        {path: '/login', component: TheLoginWindow},
-        {path: '/register', component: TheRegisterWindow},
-
+        {path: '/', redirect: '/all-stations'},
+        {path: '/all-stations', component: AllStations},
+        {path: '/my-stations', component: MyStations},
+        {path: '/login', component: LoginPage},
+        {path: '/register', component: RegisterPage},
         {path: '/:notFound(.*)', component: NotFound},
     ]
 });

@@ -16,7 +16,9 @@ class StationResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'name' => $this->name,
+            'title' => $this->title,
+            'lat' => $this->lat,
+            'lon' => $this->lon,
             'status' => $this->status
         ];
     }

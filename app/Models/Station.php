@@ -11,7 +11,9 @@ class Station extends Model
 
     protected $fillable = [
         'id',
-        'name',
+        'title',
+        'lat',
+        'lon',
         'status',
     ];
 }

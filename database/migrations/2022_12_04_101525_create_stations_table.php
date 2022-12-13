@@ -15,7 +15,9 @@ return new class extends Migration
     {
         Schema::create('stations', function (Blueprint $table) {
             $table->string('id');
-            $table->string('name');
+            $table->string('title');
+            $table->string('lat');
+            $table->string('lon');
             $table->string('status');
             $table->timestamps();
         });

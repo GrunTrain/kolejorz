@@ -27,7 +27,9 @@ class  StationController extends Controller
         else {
             Station::updateOrCreate([
                 'id' => $request->input('id'),
-                'name' => $request->input('name'),
+                'title' => $request->input('title'),
+                'lat' => $request->input('lat'),
+                'lon' => $request->input('lon'),
                 'status' => $request->input('status'),
             ]);
             return response()->json([
