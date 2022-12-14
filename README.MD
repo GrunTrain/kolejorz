@@ -28,3 +28,9 @@
 `npm install vue-router@next`
 <br>
 `npm i -D @vue-leaflet/vue-leaflet`
+
+## TroubleShooting
+in case of runnig this program on linuxbase system, you may encounter an error about Permission denied. Simple fix to that may be add  <br>
+`WWWGROUP=1000` <br>
+`WWWUSER=1000` <br>
+to .env file
