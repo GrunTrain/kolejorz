@@ -1,0 +1,257 @@
+﻿<!doctype html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Kolejorz-Wszystkie posty</title>
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.2/dist/leaflet.css" integrity="sha256-sA+zWATbFveLLNqWO2gtiw3HL/lh1giY/Inf1BJ0z14=" crossorigin="" />
+    <script src="https://unpkg.com/leaflet@1.9.2/dist/leaflet.js" integrity="sha256-o9N1jGDZrf5tS+Ft4gbIK7mYMipq9lqpVJ91xHSyKhg=" crossorigin=""></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/papaparse@5.3.0/papaparse.min.js"></script>
+    <script src="http://localhost/js/app.js" type="module"></script>
+    <style>
+        @layer utilities {
+            .scrollbar::-webkit-scrollbar {
+                width: 15px;
+                height: 15px;
+            }
+
+            .scrollbar::-webkit-scrollbar-track {
+                background: #374151;
+            }
+
+            .scrollbar::-webkit-scrollbar-thumb {
+                background: #1f2937;
+                border-radius: 20vh;
+                height: 5vh;
+            }
+
+                .scrollbar::-webkit-scrollbar-thumb:hover {
+                    background: #111827;
+                }
+        }
+    </style>
+    <style>
+    </style>
+</head>
+<body class="bg-gray-600">
+
+    <nav class="static w-full flex items-center justify-between flex-wrap bg-gray-800 px-8">
+        <div class="flex items-center text-white mr-6 pt-4 pb-5">
+            <a href="#"
+               class="flex inline-block">
+                <img src="https://img.icons8.com/ios/50/88E8D9/steam-engine.png"
+                     onmouseover="src='https://img.icons8.com/ios/50/FFFFFF/steam-engine.png'"
+                     onmouseout="src='https://img.icons8.com/ios/50/88E8D9/steam-engine.png'"
+                     width="40"
+                     alt="Kolejorz" />
+                <span class="flex items-center ml-2 font-bold text-3xl">Kolejorz</span>
+            </a>
+        </div>
+        <div class="block lg:hidden">
+            <button id="menu-button"
+                    class="flex items-center px-3 py-2 border rounded text-teal-200 border-teal-400 hover:text-white hover:border-white">
+                <svg class="fill-current h-3 w-3" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>Menu</title><path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z" /></svg>
+            </button>
+        </div>
+        <div id="menu"
+             class="hidden w-full block flex-grow lg:flex lg:items-center lg:w-auto lg:border-0 border-t-2 border-teal-200 pb-2 lg:pb-0">
+            <div class="lg:flex-grow">
+                <a href="#" class="block mt-6 lg:inline-block lg:mt-0 text-teal-200 lg:ml-12 font-semibold hover:text-teal-100">
+                    Wszystkie stacje
+                </a>
+                <a href="#" class="block mt-6 lg:inline-block lg:mt-0 text-teal-200 lg:ml-12 font-semibold hover:text-teal-100">
+                    Moje stacje
+                </a>
+                <a href="#" class="block mt-6 lg:inline-block lg:mt-0 text-teal-200 lg:ml-12 font-semibold hover:text-teal-100">
+                    Moje wycieczki
+                </a>
+            </div>
+
+
+        </div>
+
+    </nav>
+  
+
+        <div class="w-full flex flex-row flex-wrap">
+            <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+            <style>
+                .round {
+                    border-radius: 50%;
+                }
+            </style>
+            </div>
+
+
+        <div class="w-full bg-gray-600 h-screen flex flex-row flex-wrap ">
+
+            <!-- Begin Navbar -->
+
+            <div class="block lg:hidden">
+                <button id="menu-button"
+                        class="flex px-3 py-2 border rounded text-yellow-600 border-yellow-600 hover:text-white hover:border-white">
+                    <svg class="fill-current h-3 w-3" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>Menu</title><path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z" /></svg>
+                </button>
+            </div>
+
+            <div class="w-9 md:w-1/6 lg:w-flex h-0 md:h-screen rounded-b-lg top-1  overflow-y-hidden  bg-yellow-600 shadow-lg">
+                <div class="p-10 bg-yellow-600 sticky top-0">
+                    <img class="border border-white shadow-lg round" src="http://lilithaengineering.co.za/wp-content/uploads/2017/08/person-placeholder.jpg">
+                    <div class="pt-2 border-t mt-3 w-full text-center text-xl text-white">
+                        Twoja nazwa
+                    </div>
+                </div>
+                <div class="w-full h-screen antialiased flex flex-col hover:cursor-pointer">
+                    <a class="hover:bg-gray-500 bg-yellow-600  p-3 w-full text-xl text-left text-white font-semibold" href=""><i class="fa fa-pencil text-white text-2xl pr-1 pt-1 float-right"></i>Twoje posty</a>
+                    <a class="hover:bg-gray-500 bg-gray-500 border-t-2 p-3 w-full text-xl text-left text-white font-semibold" href=""><i class="fa fa-thumbs-up text-white text-2xl pr-1 pt-1 float-right"></i>Wszystkie posty</a>
+                    <a class="hover:bg-gray-500 bg-yellow-600 border-t-2 p-3 w-full text-xl text-left text-white font-semibold" href=""><i class="fa fa-user text-white text-2xl pr-1 pt-1 float-right"></i>Znajomi</a>
+                    <a class="hover:bg-gray-500 bg-yellow-600 border-t-2 p-3 w-full text-xl text-left text-white font-semibold" href=""><i class="fa fa-cog text-white text-2xl pr-1 pt-1 float-right"></i>Ustawienia</a>
+                    <a class="hover:bg-gray-500 bg-yellow-600 border-t-2 p-3 w-full text-xl text-left text-white font-semibold" href=""><i class="fa fa-arrow-left text-white text-2xl pr-1 pt-1 float-right"></i>Wyloguj się</a>
+                </div>
+            </div>
+
+
+            <!-- End Navbar -->
+
+
+
+            <div class="w-full md:w-3/4 lg:w-3/5 p-5 md:px-12 lg:24 h-full antialiased pr-3">
+
+
+                <div class="bg-gray-800 w-full shadow rounded-lg p-3  ">
+
+                    <textarea class="bg-gray-200 w-full rounded-lg shadow border p-2" rows="5" placeholder="Powiedz nam,co myślisz :)"></textarea>
+
+                    <div class="w-full flex flex-row flex-wrap mt-4">
+
+                      
+
+                        <div class="w-1/3">
+                            <button type="button" class="bottom-0 left-10 w-full p-2 rounded-lg  bg-gray-200 shadow border"><i class="fa fa-file-image-o" aria-hidden="true"></i>&nbsp; Załącz zdjęcie </button>
+                        </div>
+
+                       
+                        <div class="w-2/3">
+                            <button type="button" class="bottom-0 float-right bg-yellow-600 hover:bg-indigo-300 text-white p-2 rounded-lg">Opublikuj</button>
+                        </div>
+
+
+                    </div>
+                </div>
+
+
+
+
+                <div class="p-5">
+                    <div class=" bg-gray-800 justify-center rounded-lg pt-5">
+
+                        <figcaption class="flex pl-2 pb-1">
+
+                            <img class="rounded-full w-9 h-9" src="https://www.kindpng.com/picc/m/773-7739740_good-morning-funny-cat-png-download-business-cat.png" alt="profile picture">
+                            <button type="button">
+                                <div class="font-medium text-white text-left">&nbsp; Cat Fish</div>
+                                <div class="text-sm font-light text-gray-500 dark:text-gray-400">13 maja 18:55</div>
+                            </button>
+                        </figcaption>
+
+                        <div class="bg-gray-800 shadow p-3 text-m text-white  font-small">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum nec turpis vel ex laoreet rutrum. Nullam pharetra nunc arcu, nec vulputate quam venenatis quis. Proin pulvinar nunc massa, sed vestibulum mi sodales sit amet. Mauris facilisis nisi ac elit tincidunt, non pretium nisl auctor. Vivamus id luctus ante.
+                        </div>
+
+                        <a href="">
+                            <img src="https://wpodroz.com/img/2018/10/denis-chick-798380-unsplash-1600x900.jpg" />
+                        </a>
+                    
+
+                        <div class="bg-gray-800 p-1 rounded-b-lg shadow flex flex-row flex-wrap p-4">
+                            <button type="button" class="w-1/3  text-center text-m text-white"><i class="fa fa-thumbs-up" aria-hidden="true"></i>&nbsp; Lubię to!</button>
+                            <button type="button" class="w-1/3  text-center text-m text-white font-sans"><i class="fa fa-share" aria-hidden="true"></i>&nbsp; Udostępnij</button>
+                            <button type="button" class="w-1/3  text-center text-m text-white font-sans"><i class="fa fa-comment" aria-hidden="true"></i>&nbsp; Komentarze</button>
+
+                        </div>
+
+                    </div>
+                </div>
+
+
+                <div class="p-5">
+                    <div class=" bg-gray-800 justify-center rounded-lg pt-5">
+
+                        <figcaption class="flex pl-2 pb-1">
+
+                            <img class="rounded-full w-9 h-9" src="https://www.memesmonkey.com/images/memesmonkey/f9/f98367ccb6ee3c6975576c31b9b7e413.jpeg" alt="profile picture">
+                            <button type="button">
+                                <div class="font-medium text-white text-left">&nbsp; Adrian Korczyk</div>
+                                <div class="text-sm font-light text-gray-500 dark:text-gray-400">8 grudnia 21:37</div>
+                            </button>
+                        </figcaption>
+
+                        <div class="bg-gray-800 shadow p-3 text-m text-white  font-small">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum nec turpis vel ex laoreet rutrum. Nullam pharetra nunc arcu, nec vulputate quam venenatis quis. Proin pulvinar nunc massa, sed vestibulum mi sodales sit amet. Mauris facilisis nisi ac elit tincidunt, non pretium nisl auctor. Vivamus id luctus ante.
+                        </div>
+
+                        <a href="">
+                            <img src="https://static.polityka.pl/_resource/res/path/fb/f4/fbf4f0a4-7763-465d-9c7d-da29e2e25082_f1400x900" />
+                        </a>
+                       
+
+                        <div class="bg-gray-800 p-1 rounded-b-lg shadow flex flex-row flex-wrap p-4">
+                            <button type="button" class="w-1/3  text-center text-m text-white"><i class="fa fa-thumbs-up" aria-hidden="true"></i>&nbsp; Lubię to!</button>
+                            <button type="button" class="w-1/3  text-center text-m text-white font-sans"><i class="fa fa-share" aria-hidden="true"></i>&nbsp; Udostępnij</button>
+                            <button type="button" class="w-1/3  text-center text-m text-white font-sans"><i class="fa fa-comment" aria-hidden="true"></i>&nbsp; Komentarze</button>
+
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="p-5">
+                    <div class=" bg-gray-800 justify-center rounded-lg pt-5">
+
+                        <figcaption class="flex pl-2 pb-1">
+
+                            <img class="rounded-full w-9 h-9" src="https://a.allegroimg.com/original/1e8ab6/dc190dcb482a972613bb17aa779c" alt="profile picture">
+                            <button type="button">
+                                <div class="font-medium text-white text-left">&nbsp; Julian Propolis</div>
+                                <div class="text-sm font-light text-gray-500 dark:text-gray-400">30 luty 25:09</div>
+                            </button>
+                        </figcaption>
+
+                        <div class="bg-gray-800 shadow p-3 text-m text-white  font-small">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum nec turpis vel ex laoreet rutrum. Nullam pharetra nunc arcu, nec vulputate quam venenatis quis. Proin pulvinar nunc massa, sed vestibulum mi sodales sit amet. Mauris facilisis nisi ac elit tincidunt, non pretium nisl auctor. Vivamus id luctus ante.
+                        </div>
+
+                        <a href="">
+                            <img src="https://kupklocki.pl/userdata/public/gfx/308daaafdd4aee62c73cd7f38c6449d3.jpg" />
+                        </a>
+                      
+                        <div class="bg-gray-800 p-1 rounded-b-lg shadow flex flex-row flex-wrap p-4">
+                            <button type="button" class="w-1/3  text-center text-m text-white"><i class="fa fa-thumbs-up" aria-hidden="true"></i>&nbsp; Lubię to!</button>
+                            <button type="button" class="w-1/3  text-center text-m text-white font-sans"><i class="fa fa-share" aria-hidden="true"></i>&nbsp; Udostępnij</button>
+                            <button type="button" class="w-1/3  text-center text-m text-white font-sans"><i class="fa fa-comment" aria-hidden="true"></i>&nbsp; Komentarze</button>
+
+                        </div>
+
+                    </div>
+                </div>
+
+
+            </div>
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
