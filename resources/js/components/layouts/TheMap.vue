@@ -36,7 +36,7 @@ export default {
         initMap() {
             this.map = L.map("mapContainer", {
                 center: [52.0693267, 19.4781225],
-                zoom: 6.5,
+                zoom: 6,
                 minZoom: 1,
                 maxZoom: 16,
             });

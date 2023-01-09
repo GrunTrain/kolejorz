@@ -26,16 +26,28 @@
                 <router-link to="/" class="block mt-6 lg:inline-block lg:mt-0 text-teal-200 lg:ml-12 font-semibold hover:text-teal-100">
                     Wszystkie stacje
                 </router-link>
-                <router-link to="/my-stations" class="block mt-6 lg:inline-block lg:mt-0 text-teal-200 lg:ml-12 font-semibold hover:text-teal-100">
+                <router-link v-if="isAuth" to="/my-stations" class="block mt-6 lg:inline-block lg:mt-0 text-teal-200 lg:ml-12 font-semibold hover:text-teal-100">
                     Moje stacje
                 </router-link>
-                <a href="#" class="block mt-6 lg:inline-block lg:mt-0 text-teal-200 lg:ml-12 font-semibold hover:text-teal-100">
+                <a href="#" v-if="isAuth" class="block mt-6 lg:inline-block lg:mt-0 text-teal-200 lg:ml-12 font-semibold hover:text-teal-100">
                     Moje wycieczki
                 </a>
             </div>
 
+            <a href="#" v-if="isAuth" @click="logout">
+            <div class="mr-4">
+                <div class="inline-block flex justify-left lg:justify-center lg:w-28 text-sm lg:px-2 py-2 lg:border rounded lg:bg-white text-white lg:text-black lg:border-white lg:hover:bg-gray-300 mt-8 lg:mt-0 hover:font-semibold lg:hover:font-normal">
+                    <img
+                        class="lg:hidden inline-block mr-2"
+                        src="https://img.icons8.com/ios-glyphs/20/20/FFFFFF/login-rounded-right--v1.png"
+                    />
+                    <span class="flex items-center">Wyloguj się</span>
+                </div>
+            </div>
+            </a>
+
             <div>
-                <router-link to="/login" class="inline-block flex justify-left lg:justify-center lg:w-28 text-sm lg:px-2 py-2 lg:border rounded lg:bg-white text-white lg:text-black lg:border-white lg:hover:bg-gray-300 mt-8 lg:mt-0 hover:font-semibold lg:hover:font-normal">
+                <router-link v-if="!isAuth" to="/login" class="inline-block flex justify-left lg:justify-center lg:w-28 text-sm lg:px-2 py-2 lg:border rounded lg:bg-white text-white lg:text-black lg:border-white lg:hover:bg-gray-300 mt-8 lg:mt-0 hover:font-semibold lg:hover:font-normal">
                     <img
                         class="lg:hidden inline-block mr-2"
                         src="https://img.icons8.com/ios-glyphs/20/20/FFFFFF/login-rounded-right--v1.png"
@@ -44,7 +56,7 @@
                 </router-link>
             </div>
             <div>
-                <router-link to="/register" class="inline-block flex justify-left lg:justify-center lg:w-28 text-sm lg:ml-4 lg:px-2 py-2 lg:border rounded text-white lg:border-white lg:hover:bg-gray-600 lg:mt-0 hover:font-semibold lg:hover:font-normal">
+                <router-link v-if="!isAuth" to="/register" class="inline-block flex justify-left lg:justify-center lg:w-28 text-sm lg:ml-4 lg:px-2 py-2 lg:border rounded text-white lg:border-white lg:hover:bg-gray-600 lg:mt-0 hover:font-semibold lg:hover:font-normal">
                     <img
                         class="lg:hidden inline-block mr-2"
                         src="https://img.icons8.com/ios-glyphs/20/20/FFFFFF/add-user-male.png"
@@ -57,16 +69,37 @@
 </template>
 
 <script>
+import { mapGetters, mapActions } from 'vuex';
+
 export default {
     data() {
         return {
-            menuIsDropped: false,
+            menuIsDropped: false
         }
     },
+
+    computed: {
+        ...mapGetters('auth', {
+            isAuth: 'getStatus'
+        }),
+
+        ...mapActions('auth', {
+            setUnauth: 'setUnauth'
+        }),
+    },
+
     methods: {
         dropMenu() {
             this.menuIsDropped = !this.menuIsDropped;
-        }
+        },
+
+        logout() {
+            axios.post('/api/logout')
+            .then(() => {
+                this.$router.push({ name: "login-page" })
+                this.setUnauth
+            }).catch((error) => console.log(error))
+        },
     }
 }
 </script>

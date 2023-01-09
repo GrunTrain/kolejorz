@@ -9,11 +9,13 @@
 
 <script>
 import AllStationsList from "../components/layouts/AllStationsList.vue";
+import TheMap from "../components/layouts/TheMap.vue";
 import stationsData from "@/stations.json";
 
 export default {
     components: {
-        AllStationsList
+        AllStationsList,
+        TheMap
     },
 
     data() {
