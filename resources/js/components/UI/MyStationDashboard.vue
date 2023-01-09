@@ -5,17 +5,44 @@
                 {{ station.title }}
             </p>
             <div v-if="station.status === 'przejechana'">
-                <p class="text-[#ffbf00]">{{station.status}}</p>
+                <div class="flex justify-between flex-wrap">
+                    <p class="text-[#ffbf00]">{{station.status}}</p>
+                    <button @click="deleteStation(station.id, station.status)" class="flex justify-start w-fit mt-2 px-4 p-1 rounded bg-gray-600 hover:bg-red-900">
+                        Usuń
+                        <img class="flex ml-2 mt-1" src="https://img.icons8.com/ios/15/FFFFFF/delete--v1.png"/>
+                    </button>
+                </div>
             </div>
             <div v-else>
-                <p class="text-[#14b8a6]">{{station.status}}</p>
+                <div class="flex justify-between flex-wrap">
+                    <p class="text-[#14b8a6]">{{station.status}}</p>
+                    <button @click="deleteStation(station.id, station.status)" class="flex justify-start w-fit mt-2 px-4 p-1 rounded bg-gray-600 hover:bg-red-900">
+                        Usuń
+                        <img class="flex ml-2 mt-1" src="https://img.icons8.com/ios/15/FFFFFF/delete--v1.png"/>
+                    </button>
+                </div>
             </div>
+
         </div>
     </div>
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
-    props: ['station']
+    props: ['station'],
+
+    methods: {
+        deleteStation(id, status) {
+            axios.delete('/api/stations/' + id, {
+                data: {
+                    status: status
+                }
+            }).then(() => {
+                location.reload();
+            })
+        }
+    }
 }
 </script>

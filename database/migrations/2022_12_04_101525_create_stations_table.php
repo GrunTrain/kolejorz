@@ -20,6 +20,8 @@ return new class extends Migration
             $table->string('lon');
             $table->string('status');
             $table->timestamps();
+
+            $table->string('user_id');
         });
     }
 

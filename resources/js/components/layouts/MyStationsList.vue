@@ -6,7 +6,7 @@
                 <img src="https://img.icons8.com/ios-filled/20/d3d3d3/delete-sign--v1.png"/>
             </button>
         </the-search-window>
-        <span v-for="station in filteredStations" :key="station.idStr">
+        <span v-for="station in filteredStations.reverse()" :key="station.idStr">
             <my-station-dashboard :station="station"></my-station-dashboard>
         </span>
     </div>
@@ -27,14 +27,14 @@ export default {
 
     data() {
         return {
-            searchInput: ''
+            searchInput: '',
         }
     },
 
     methods: {
         clearInput() {
             this.searchInput = '';
-        }
+        },
     },
 
     computed: {

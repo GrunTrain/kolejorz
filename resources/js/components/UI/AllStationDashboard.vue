@@ -13,18 +13,22 @@
 
         <div class="flex items-center justify-end sm:space-x-0">
             <button
+                v-if="isAuth"
                 @click="setSelectedComponent('add-travelled-card')"
                 title="Dodaj do przejechanych">
                 <img class="rounded hover:bg-gray-600 py-3 px-2"
                      src="https://img.icons8.com/ios-filled/20/FFBF00/pin--v1.png"/>
             </button>
             <button
+                v-if="isAuth"
                 @click="setSelectedComponent('add-visited-card')"
                 title="Dodaj do odwiedzonych">
                 <img class="rounded hover:bg-gray-600 py-3 px-2"
                      src="https://img.icons8.com/ios-filled/20/14B8A6/pin--v1.png"/>
             </button>
-            <button title="Dodaj post lub wycieczkę">
+            <button
+                v-if="isAuth"
+                title="Dodaj post lub wycieczkę">
                 <img class="rounded hover:bg-gray-600 p-2"
                      src="https://img.icons8.com/quill/30/FFFFFF/experimental-map-quill.png"/>
             </button>
@@ -44,6 +48,8 @@ import AddTravelledCard from "@/components/UI/AddTravelledCard.vue";
 import AddVisitedCard from "../UI/AddVisitedCard.vue";
 import AlertPopUp from "./AlertPopUp.vue";
 
+import { mapGetters } from 'vuex';
+
 export default {
     props: ['station'],
     components: {
@@ -51,6 +57,13 @@ export default {
         AddVisitedCard,
         AddTravelledCard
     },
+
+    computed: {
+        ...mapGetters('auth', {
+            isAuth: 'getStatus'
+        }),
+    },
+
     data() {
         return {
             selectedComponent: 'all-station-dashboard',

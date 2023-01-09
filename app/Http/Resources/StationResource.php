@@ -19,7 +19,7 @@ class StationResource extends JsonResource
             'title' => $this->title,
             'lat' => $this->lat,
             'lon' => $this->lon,
-            'status' => $this->status
+            'status' => $this->status,
         ];
     }
 }

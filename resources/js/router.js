@@ -9,12 +9,42 @@ import AllStations from "./pages/AllStations.vue";
 const router = createRouter({
     history: createWebHistory(),
     routes: [
-        {path: '/', redirect: '/all-stations'},
-        {path: '/all-stations', component: AllStations, name: 'AllStations'},
-        {path: '/my-stations', component: MyStations, name: 'MyStations'},
-        {path: '/login', component: LoginPage},
-        {path: '/register', component: RegisterPage},
-        {path: '/:notFound(.*)', component: NotFound},
+        {
+            path: '/',
+            redirect: '/all-stations',
+            component: AllStations,
+
+        },
+        {
+            path: '/all-stations',
+            component: AllStations,
+            name: 'all-stations',
+
+
+        },
+        {
+            path: '/my-stations',
+            component: MyStations,
+            name: 'my-stations',
+
+        },
+        {
+            path: '/login',
+            component: LoginPage,
+            name: 'login-page',
+
+        },
+        {
+            path: '/register',
+            component: RegisterPage,
+            name: 'register-page',
+
+        },
+        {
+            path: '/:notFound(.*)',
+            component: NotFound,
+
+        },
     ]
 });
 

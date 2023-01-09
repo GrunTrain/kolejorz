@@ -20,8 +20,14 @@ use Laravel\Fortify\Http\Controllers\AuthenticatedSessionController;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+//Route::middleware('auth:sanctum')->get('/auth', function () {
+//    return true;
+//});
+
 Route::middleware('auth:sanctum')->post('logout', [AuthenticatedSessionController::class, 'destroy']);
 
 Route::apiResource('stations', StationController::class);
+
 Route::post('register', [RegisteredUserController::class, 'store']);
 Route::post('login', [AuthenticatedSessionController::class, 'store']);

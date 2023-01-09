@@ -9,11 +9,13 @@
 
 <script>
 import MyStationsList from "../components/layouts/MyStationsList.vue";
+import TheMap from "../components/layouts/TheMap.vue";
 import axios from "axios"
 
 export default {
     components: {
-        MyStationsList
+        MyStationsList,
+        TheMap
     },
 
     data() {
@@ -28,8 +30,9 @@ export default {
             this.stationMarker = stationTitle;
         },
         getStations() {
-            axios.get('/api/stations')
+            axios.get('/api/stations/id')
                 .then(response => {
+                    console.log(response)
                     response.data.data.forEach(station => {
                         this.stationsData.push(station)
                     })
