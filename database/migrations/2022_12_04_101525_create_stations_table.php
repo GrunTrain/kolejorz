@@ -19,8 +19,6 @@ return new class extends Migration
             $table->string('lat');
             $table->string('lon');
             $table->timestamps();
-
-            $table->string('user_id');
         });
     }
 

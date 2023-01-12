@@ -16,9 +16,14 @@ class DatabaseSeeder extends Seeder
     {
         \App\Models\User::factory(10)->create();
 
-        \App\Models\User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
-        ]);
+        $json = json_decode(file_get_contents("resources/js/stations.json"), true);
+        foreach ($json as &$station) {
+            \App\Models\Station::updateOrCreate([
+                'id' => $station['id'],
+                'name' => $station['title'],
+                'lat' => $station['lat'],
+                'lon' => $station['lon'],
+            ]);
+        }
     }
 }

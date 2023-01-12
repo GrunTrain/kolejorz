@@ -29,7 +29,6 @@ class  StationController extends Controller
     {
         if (Station::where('id', $request->input('id'))
                     ->where('status', $request->input('status'))
-                    ->where('user_id', Auth::id())
                     ->exists()) {
             $status = ($request->input('status'));
             return response()->json([
@@ -42,8 +41,6 @@ class  StationController extends Controller
                 'title' => $request->input('title'),
                 'lat' => $request->input('lat'),
                 'lon' => $request->input('lon'),
-                'status' => $request->input('status'),
-                'user_id' => Auth::id()
             ]);
             return response()->json([
                 'alert' => "Dodano do Moich stacji!",
