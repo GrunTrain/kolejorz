@@ -14,9 +14,9 @@ return new class extends Migration
     public function up()
     {
         Schema::create('user_stations', function (Blueprint $table) {
+            $table->id();
             $table->integer("user_id");
             $table->integer("station_id");
-            $table->primary(["user_id", "station_id"]);
             $table->integer("times_visited");
             $table->integer("times_passed");
             $table->timestamps();

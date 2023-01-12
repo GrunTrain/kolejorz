@@ -60,8 +60,7 @@ export default {
     components: {},
     methods: {
             addTour() {
-                console.log(this.tour.date)
-            axios.post('/api/add_tour', this.tour).then(() => {
+            axios.post('/api/add_tour', this.tour).then((response) => {
                 this.$router.push({ name: "all-stations" });
             }).catch((error) =>{
                 this.errors = error.response.data.errors
