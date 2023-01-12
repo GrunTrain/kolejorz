@@ -5,15 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Station extends Model
+class TourStation extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'id',
-        'name',
-        'lat',
-        'lon',
-        'user_id'
+        'tour_id',
+        'station_id',
     ];
 }

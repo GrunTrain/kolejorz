@@ -5,15 +5,16 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Station extends Model
+class Tour extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'id',
-        'name',
-        'lat',
-        'lon',
-        'user_id'
+        'user_id',
+        'start_station',
+        'destination_station',
+        'length',
+        'description',
+        'is_public',
     ];
 }
