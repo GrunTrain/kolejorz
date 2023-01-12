@@ -16,5 +16,6 @@ class Tour extends Model
         'length',
         'description',
         'is_public',
+        'date',
     ];
 }

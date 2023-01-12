@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\StationController;
+use App\Http\Controllers\Api\TourController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Laravel\Fortify\Http\Controllers\RegisteredUserController;
@@ -31,3 +32,5 @@ Route::apiResource('stations', StationController::class);
 
 Route::post('register', [RegisteredUserController::class, 'store']);
 Route::post('login', [AuthenticatedSessionController::class, 'store']);
+
+Route::post('add_tour', [TourController::class, 'store']);

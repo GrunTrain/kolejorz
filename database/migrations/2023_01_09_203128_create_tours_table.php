@@ -19,8 +19,9 @@ return new class extends Migration
             $table->integer("start_station");
             $table->integer("destination_station");
             $table->integer("length");
-            $table->string("description");
+            $table->string("description")->nullable();
             $table->boolean("is_public");
+            $table->date("date");
             $table->timestamps();
         });
     }

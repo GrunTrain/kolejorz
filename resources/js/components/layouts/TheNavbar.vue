@@ -32,6 +32,9 @@
                 <a href="#" v-if="isAuth" class="block mt-6 lg:inline-block lg:mt-0 text-teal-200 lg:ml-12 font-semibold hover:text-teal-100">
                     Moje wycieczki
                 </a>
+                <router-link v-if="isAuth" to="/add-tour" class="block mt-6 lg:inline-block lg:mt-0 text-teal-200 lg:ml-12 font-semibold hover:text-teal-100">
+                    Dodaj wycieczkę
+                </router-link>
             </div>
 
             <a href="#" v-if="isAuth" @click="logout">
