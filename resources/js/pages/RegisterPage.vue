@@ -8,18 +8,18 @@
 
                 <form @submit.prevent="register" class="flex flex-col gap-4">
 
-                    <input class="p-2 mt-8 rounded-xl border" type="text" name="name" placeholder="Nazwa" v-model="registerForm.name">
+                    <input class="p-2 mt-8 rounded-xl border" type="text" name="name" placeholder="Nazwa" v-model.trim="registerForm.name">
                     <span v-if="errors.name" class="break-words" style="color: red">{{ errors.name[0] }}</span>
 
-                    <input class="p-2 rounded-xl border" type="email" name="email" placeholder="Email" v-model="registerForm.email">
+                    <input class="p-2 rounded-xl border" type="email" name="email" placeholder="Email" v-model.trim="registerForm.email">
                     <span v-if="errors.email" class="break-words" style="color: red">{{ errors.email[0] }}</span>
 
                     <div class="relative">
-                        <input class="p-2 rounded-xl border w-full" type="password" name="password" autocomplete="on" placeholder="Hasło" v-model="registerForm.password">
+                        <input class="p-2 rounded-xl border w-full" type="password" name="password" autocomplete="on" placeholder="Hasło" v-model.trim="registerForm.password">
                     </div>
 
                     <div class="relative">
-                        <input class="p-2 rounded-xl border w-full" type="password" name="password" autocomplete="on" placeholder="Potwierdź hasło" v-model="registerForm.password_confirmation">
+                        <input class="p-2 rounded-xl border w-full" type="password" name="password" autocomplete="on" placeholder="Potwierdź hasło" v-model.trim="registerForm.password_confirmation">
                     </div>
                     <span v-if="errors.password" class="break-words" style="color: red">{{ errors.password[0] }}</span>
 

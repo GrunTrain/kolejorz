@@ -93,7 +93,6 @@ export default {
             //emit event - pass station.title to parent's component when marker is clicked
             markers.on("click", (event) => {
                 this.$emit('set-station-marker', event.layer.title);
-                console.log(event.layer.title)
             });
             markers.addTo(this.map);
         }

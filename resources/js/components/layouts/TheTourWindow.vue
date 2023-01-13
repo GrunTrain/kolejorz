@@ -2,38 +2,68 @@
     <div class="overflow-auto scrollbar sidebar w-full sm:w-1/2 lg:w-1/3 flex-col bg-gray-800 text-white h-full">
         <div class="flex w-full justify-center">
             <div class="flex flex-col sm:py-8 py-4 w-4/5">
-                <p class="text-teal-200">Stacja początkowa:</p>
-                <input v-model="tour.start" type="search" class="font-semibold text-red-900 rounded-lg py-2 px-2 my-2 w-full">
-            </div>
-        </div>
+                <h1 class="font-semibold text-xl mb-2">Dodawanie wycieczki</h1>
+                <p v-if="middle.length < 1" class="flex text-teal-200 pt-2">
+                    Kliknij
+                    <img class="px-2" src="https://img.icons8.com/ios-filled/25/FFFFFF/plus--v1.png"/>
+                    aby dodać stację
+                </p>
 
-        <div class="flex w-full justify-center">
-            <div class="flex flex-col space-y-2 w-4/5">
-                <p class="text-teal-200">Przez:</p>
-                <div v-for="(station, index) in tour.middle" :key="index" class="flex justify-end">
-                    <input v-model="station.name" type="search"  class="font-semibold text-red-900 rounded-lg my-1 px-2 py-2 w-full">
-                    <button  @click="remove(index)" class="flex items-center" title="Usuń stację">
-                        <img class="rounded hover:bg-gray-600 py-2 px-1" src="https://img.icons8.com/ios/20/FFFFFF/delete--v1.png"/>
-                    </button>
+                <div v-if="middle.length < 1" class="text-xs border-b my-4 border-[#b2f5ea] text-white"></div>
+
+                <div class="flex flex-col">
+                    <div
+                        v-for="(station, index) in middle" :key="index"
+                        :class="(index === 0 || index === middle.length - 1) ? 'border-2 border-green-600' : 'border border-yellow-500'"
+                        class="flex flex-col text-white rounded-lg my-2 p-2">
+
+                        <div
+                            :class="(index === 0 || index === middle.length - 1) ? 'text-green-600 font-bold' : 'text-yellow-500 font-semibold'"
+                             class="flex items-center">
+
+                            <img v-if="index === 0" class="rounded hover:bg-gray-600 py-2 px-1" src="https://img.icons8.com/ios/20/FFFFFF/home--v1.png"/>
+                            <img v-if="(index === middle.length - 1 && middle.length > 1)" class="rounded hover:bg-gray-600 py-2 px-1" src="https://img.icons8.com/ios/20/FFFFFF/finish-flag--v1.png"/>
+                            <img v-if="(index !== 0 && index !== middle.length - 1)" class="rounded hover:bg-gray-600 py-2 px-1" src="https://img.icons8.com/ios/20/FFFFFF/final-state--v1.png"/>
+                            {{ station }}
+                        </div>
+
+                        <div class="flex justify-end">
+                            <button @click="removeStation(index)" class="items-center" title="Usuń stację">
+                                <img class="rounded hover:bg-gray-600 py-2 px-1" src="https://img.icons8.com/ios/20/FFFFFF/delete--v1.png"/>
+                            </button>
+                        </div>
+
+                    </div>
                 </div>
-                <div class="flex justify-center">
-                    <base-button @click="addStation" class="flex justify-center bg-teal-400 hover:bg-teal-500 w-full">Dodaj stację</base-button>
+
+                <p class="font-semibold py-2">Data:</p>
+                <input v-model="date" type="date" class="font-semibold text-red-900 rounded-lg pl-2 px-2 py-2 w-full">
+                <span v-if="error" class="break-words" style="color: red">{{ error }}</span>
+
+                <div class="flex items-center py-2">
+                    <input
+                        v-model="agreement"
+                        type="checkbox" class="w-4 h-4 text-teal-600 bg-gray-100 border-gray-300 rounded focus:ring-teal-500 dark:focus:ring-teal-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+
+                    <label class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Czy chcesz dodać post?</label>
                 </div>
 
-                <div class="flex flex-col justify-center pt-4">
-                    <p class="text-teal-200 py-2">Stacja końcowa:</p>
-                    <input v-model="tour.end" type="search" class="font-semibold text-red-900 rounded-lg px-2 py-2 w-full">
+                <p v-if="agreement" class="font-semibold py-2">Opis:</p>
+                <textarea v-if="agreement" v-model="description" class="font-semibold text-red-900 rounded-lg pl-2 pt-2 pb-8 w-full"></textarea>
 
-                    <p class="text-teal-200 py-2">Data:</p>
-                    <input v-model="tour.date" type="search" class="font-semibold text-red-900 rounded-lg pl-2 px-2 py-2 w-full">
+                <base-button v-if="middle.length > 1" @click="addTour" class="bg-teal-500 hover:bg-teal-600">
+                    <p v-if="agreement">
+                        Dodaj wycieczkę i post
+                    </p>
+                    <p v-else>
+                        Dodaj wycieczkę
+                    </p>
+                </base-button>
 
-                    <p class="text-teal-200 py-2">Opis:</p>
-                    <textarea class="font-semibold text-red-900 rounded-lg pl-2 py-8 w-full"></textarea>
-                </div>
+                <alert-pop-up v-if="alert">
+                    {{ alert }}
+                </alert-pop-up>
 
-                <div class="flex justify-center">
-                    <base-button @click="addStation" class="flex justify-center bg-teal-400 hover:bg-teal-500 mb-8 w-full">Opublikuj wycieczkę</base-button>
-                </div>
             </div>
         </div>
 
@@ -41,35 +71,74 @@
 </template>
 
 <script>
+import AlertPopUp from "@/components/UI/AlertPopUp.vue"
 
 export default {
-    name: "TheTourWindow",
+    components: {
+        AlertPopUp
+    },
+
+    props: ['stationName'],
 
     data(){
         return{
-            tour: {
-                start: '',
-                middle: [],
-                end: '',
-                date: null,
-            },
+            middle: [],
+            date: '',
+            description: '',
+
+            agreement: false,
+            error: '',
+            alert: '',
         }
     },
-    components: {},
+
+    watch: {
+      stationName() {
+          this.middle.push(this.stationName);
+      }
+    },
+
     methods: {
         addTour() {
-            axios.post('/api/add-tour', this.tour).then(() => {
-                this.$router.push({ name: "my-stations" });
+            if (this.date !== '') {
+                this.insertStation();
+            } else {
+                this.error = 'Nie podano daty!';
+            }
+        },
+
+        insertStation() {
+            axios.post('/api/add-tour', {
+                data: {
+                    start: this.middle[0],
+                    end: this.middle[this.middle.length - 1],
+                    middle: this.middle.slice(1, -1),
+                    date: this.date,
+                    description: this.description,
+                }
+            }).then((response) => {
+                this.middle = [];
+                this.date = '';
+                this.description = '';
+                this.error = '';
+                this.showAlert(response.data.alert);
             }).catch((error) => {
-                this.errors = error.response.data.errors
+                this.error = error.response.data.errors
             })
         },
-        addStation(){
-            this.tour.middle.push({name: ''})
+
+        removeStation(index) {
+            this.middle.splice(index, 1)
         },
-        remove(index){
-            this.tour.middle.splice(index, 1)
+
+        showAlert(alert) {
+            this.alert = alert;
+            setTimeout(this.hideAlert, 2000);
         },
+
+        hideAlert() {
+            this.alert = '';
+        }
     }
 }
 </script>

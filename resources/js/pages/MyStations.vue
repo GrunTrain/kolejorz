@@ -32,11 +32,9 @@ export default {
         getStations() {
             axios.get('/api/stations/id')
                 .then(response => {
-                    console.log(response.data)
                     response.data.data.forEach(station => {
                         this.stationsData.push(station)
                     })
-                    console.log(this.stationsData)
                     this.$refs.TheMap.isFetched(true);
                 })
                 .catch(error => {
