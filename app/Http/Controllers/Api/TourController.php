@@ -14,23 +14,24 @@ class TourController extends Controller
 {
     public function store(Request $request)
     {
-        if (!$request->input("date")) return response()->json(["alert" => "Nie podano daty!"]);
 
-        $start = Station::where('name', $request->input("start"))->firstOrFail();
-        $end = Station::where('name', $request->input("end"))->firstOrFail();
-        $description = '';
+        $start = Station::where('name', $request->input('data.start'))->firstOrFail();
+        $end = Station::where('name', $request->input('data.end'))->firstOrFail();
+        $middle = $request->input('data.middle');
 
-        if ($request->input('description')) $description = $request->input('description');
+        $date = $request->input('data.date');
+        $description = $request->input('data.description');
+        $isPublic = ($description != '' ? true : false);
 
         //create tour
         $tour = Tour::create([
             'user_id' => Auth::id(),
             'start_station' => $start->id,
             'destination_station' => $end->id,
-            'length' => 2 + count($request->input("middle")),
+            'length' => 2 + count($middle),
             'description' => $description,
-            'is_public' => true,
-            'date' => $request->input("date"),
+            'is_public' => $isPublic,
+            'date' => $date,
         ]);
 
         //first station
@@ -51,9 +52,9 @@ class TourController extends Controller
 
 
         //middle stations
-        foreach ($request->input("middle") as &$middle_station)
+        foreach ($middle as &$middleStation)
         {
-            $station = Station::where("name", $middle_station)->firstOrFail();
+            $station = Station::where("name", $middleStation)->firstOrFail();
             TourStation::create([
                 'tour_id' => $tour->id,
                 'station_id' => $station->id,

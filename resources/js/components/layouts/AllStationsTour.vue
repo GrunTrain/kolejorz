@@ -15,7 +15,7 @@
                     </p>
                 </div>
                 <div class="flex items-center justify-end sm:space-x-0">
-                    <button title="Dodaj do przejechanych">
+                    <button @click="$emit('send-name', station.title)" title="Dodaj do przejechanych">
                         <img class="rounded hover:bg-gray-600 py-3 px-2"
                              src="https://img.icons8.com/ios-filled/20/FFFFFF/plus--v1.png"/>
                     </button>
@@ -27,12 +27,15 @@
 
 <script>
 import TheSearchWindow from "@/components/layouts/TheSearchWindow.vue";
-import stations from "@/stations.json";
 
 export default {
+    inject: ['stations'],
+    props: ['marker'],
+
     components: {
-        TheSearchWindow
+        TheSearchWindow,
     },
+
     data() {
         return {
             searchInput: '',
@@ -47,11 +50,18 @@ export default {
 
     computed: {
         filteredStations() {
-            return stations.filter(station => {
+            return this.stations.filter(station => {
                 return station.title.toLowerCase().includes(this.searchInput.toLowerCase());
             })
         },
     },
+
+    watch: {
+        marker() {
+            this.searchInput = '' + this.marker
+        }
+    }
 }
+
 </script>
 

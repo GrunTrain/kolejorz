@@ -8,11 +8,11 @@
 
                 <form @submit.prevent="login" class="flex flex-col gap-4">
 
-                    <input class="p-2 rounded-xl border" type="email" name="email" placeholder="Email" v-model="loginForm.email">
+                    <input class="p-2 rounded-xl border" type="email" name="email" placeholder="Email" v-model.trim="loginForm.email">
                     <span v-if="errors.email" class="break-words" style="color: red">{{ errors.email[0] }}</span>
 
                     <div class="relative">
-                        <input class="p-2 rounded-xl border w-full" type="password" name="password" autocomplete="on" placeholder="Hasło" v-model="loginForm.password">
+                        <input class="p-2 rounded-xl border w-full" type="password" name="password" autocomplete="on" placeholder="Hasło" v-model.trim="loginForm.password">
                     </div>
                     <span v-if="errors.password" class="break-words" style="color: red">{{ errors.password[0] }}</span>
 

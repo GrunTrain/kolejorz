@@ -6,12 +6,12 @@
 
                 <div>
                     <label class="block mb-2 text-sm font-medium text-white">Nowe hasło</label>
-                    <input autocomplete="on" type="password" name="password" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5" v-model="password" required>
+                    <input autocomplete="on" type="password" name="password" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5" v-model.trim="password" required>
                 </div>
 
                 <div>
                     <label class="block mb-2 text-sm font-medium text-white">Powtórz hasło</label>
-                    <input autocomplete="on" type="password" name="password" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5" v-model="password_repeat">
+                    <input autocomplete="on" type="password" name="password" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5" v-model.trim="password_repeat">
                 </div>
 
                 <span v-if="error" class="break-words" style="color: red">{{ error }}</span>
