@@ -2,25 +2,24 @@
     <div class="flex flex-col my-4 p-3 bg-gray-800 rounded-lg text-white">
         <div class="flex flex-col space-y-2 break-words">
             <p class="font-semibold lg:text-xl">
-                {{ station.title }}
+                {{ station.name }}
             </p>
-            <div v-if="station.status === 'przejechana'">
+            <div v-if="station.timesVisited">
                 <div class="flex justify-between flex-wrap">
-                    <p class="text-[#ffbf00]">{{station.status}}</p>
-                    <button @click="deleteStation(station.id, station.status)" class="flex justify-start w-fit mt-2 px-4 p-1 rounded bg-gray-600 hover:bg-red-900">
-                        Usuń
-                        <img class="flex ml-2 mt-1" src="https://img.icons8.com/ios/15/FFFFFF/delete--v1.png"/>
-                    </button>
+                    <p class="text-[#14b8a6]">odwiedzona ({{station.timesVisited}})</p>
                 </div>
             </div>
-            <div v-else>
+            <div v-if="station.timesPassed">
                 <div class="flex justify-between flex-wrap">
-                    <p class="text-[#14b8a6]">{{station.status}}</p>
-                    <button @click="deleteStation(station.id, station.status)" class="flex justify-start w-fit mt-2 px-4 p-1 rounded bg-gray-600 hover:bg-red-900">
-                        Usuń
-                        <img class="flex ml-2 mt-1" src="https://img.icons8.com/ios/15/FFFFFF/delete--v1.png"/>
-                    </button>
+                    <p class="text-[#ffbf00]">odwiedzona ({{ station.timesPassed }})</p>
                 </div>
+            </div>
+            <div class="flex flex-row justify-end">
+                <button @click="deleteStation(station.station_id)" class="flex w-fit mt-2 px-4 p-1 rounded bg-gray-600 hover:bg-red-900">
+                    Usuń
+                    <img class="flex ml-2 mt-1" src="https://img.icons8.com/ios/15/FFFFFF/delete--v1.png"/>
+                </button>
+
             </div>
 
         </div>
@@ -34,12 +33,8 @@ export default {
     props: ['station'],
 
     methods: {
-        deleteStation(id, status) {
-            axios.delete('/api/stations/' + id, {
-                data: {
-                    status: status
-                }
-            }).then(() => {
+        deleteStation(id) {
+            axios.delete('/api/stations/' + id).then(() => {
                 location.reload();
             })
         }

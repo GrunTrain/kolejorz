@@ -32,11 +32,11 @@ export default {
     data() {
         return {
             stationData: {
-                id: this.station.idStr,
-                title: this.station.title,
+                station_id: this.station.idStr,
+                name: this.station.title,
                 lat: this.station.lat,
                 lon: this.station.lon,
-                status: 'odwiedzona'
+                status: 1
             },
             alert: ''
         }

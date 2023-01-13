@@ -1,42 +1,40 @@
 <template>
-    <div class="mb-4 px-3 pb-4 pt-2 bg-gray-800 rounded-lg text-white justify-between">
-        <div class="flex justify-end">
-            <button>
-                <img class="rounded hover:bg-gray-600 p-1" src="https://img.icons8.com/ios/20/9AF4EA/close-window.png"/>
-            </button>
-        </div>
-
-        <div class="flex flex-row">
-            <div class="flex flex-col space-y-1 w-9/12">
+    <div class="overflow-auto scrollbar sidebar w-full sm:w-1/2 lg:w-1/3 flex-col bg-gray-800 text-white h-full">
+        <div class="flex w-full justify-center">
+            <div class="flex flex-col sm:py-8 py-4 w-4/5">
                 <p class="text-teal-200">Stacja początkowa:</p>
-                <p class="font-semibold">Nowy Dwor Mazowiecki (Nowy Dwór Mazowiecki)</p>
+                <input v-model="tour.start" type="search" class="font-semibold text-red-900 rounded-lg py-2 px-2 my-2 w-full">
             </div>
-            <button class="flex justify-end items-center mt-6 w-3/12" title="Usuń stację">
-                <img class="rounded hover:bg-gray-600 py-2 px-1" src="https://img.icons8.com/ios/20/FFFFFF/delete--v1.png"/>
-            </button>
-        </div>
-        <div class="flex flex-row">
-            <div class="flex flex-col space-y-1 my-2 w-9/12">
-                <p class="text-teal-200">Przez:</p>
-                <p class="font-semibold">Aleksandrow Kujawski (Aleksandrów Kujawski)</p>
-            </div>
-            <button class="flex justify-end items-center mt-6 w-3/12" title="Usuń stację">
-                <img class="rounded hover:bg-gray-600 py-2 px-1" src="https://img.icons8.com/ios/20/FFFFFF/delete--v1.png"/>
-            </button>
-        </div>
-        <div class="flex flex-row">
-            <div class="flex flex-col space-y-1 my-2 w-9/12">
-                <p class="text-teal-200">Stacja końcowa:</p>
-                <p class="font-semibold">Wałbrzych Miasto</p>
-            </div>
-            <button class="flex justify-end items-center mt-6 w-3/12" title="Usuń stację">
-                <img class="rounded hover:bg-gray-600 py-2 px-1" src="https://img.icons8.com/ios/20/FFFFFF/delete--v1.png"/>
-            </button>
         </div>
 
-        <div class="flex flex-wrap flex-col items-center">
-            <base-button class="bg-teal-400 hover:bg-teal-500 w-2/3 lg:w-7/12">Dodaj wycieczkę</base-button>
-            <base-button class="bg-teal-600 hover:bg-teal-700 w-2/3 lg:w-7/12">Dodaj post</base-button>
+        <div class="flex w-full justify-center">
+            <div class="flex flex-col space-y-2 w-4/5">
+                <p class="text-teal-200">Przez:</p>
+                <div v-for="(station, index) in tour.middle" :key="index" class="flex justify-end">
+                    <input v-model="station.name" type="search"  class="font-semibold text-red-900 rounded-lg my-1 px-2 py-2 w-full">
+                    <button  @click="remove(index)" class="flex items-center" title="Usuń stację">
+                        <img class="rounded hover:bg-gray-600 py-2 px-1" src="https://img.icons8.com/ios/20/FFFFFF/delete--v1.png"/>
+                    </button>
+                </div>
+                <div class="flex justify-center">
+                    <base-button @click="addStation" class="flex justify-center bg-teal-400 hover:bg-teal-500 w-full">Dodaj stację</base-button>
+                </div>
+
+                <div class="flex flex-col justify-center pt-4">
+                    <p class="text-teal-200 py-2">Stacja końcowa:</p>
+                    <input v-model="tour.end" type="search" class="font-semibold text-red-900 rounded-lg px-2 py-2 w-full">
+
+                    <p class="text-teal-200 py-2">Data:</p>
+                    <input v-model="tour.date" type="search" class="font-semibold text-red-900 rounded-lg pl-2 px-2 py-2 w-full">
+
+                    <p class="text-teal-200 py-2">Opis:</p>
+                    <textarea class="font-semibold text-red-900 rounded-lg pl-2 py-8 w-full"></textarea>
+                </div>
+
+                <div class="flex justify-center">
+                    <base-button @click="addStation" class="flex justify-center bg-teal-400 hover:bg-teal-500 mb-8 w-full">Opublikuj wycieczkę</base-button>
+                </div>
+            </div>
         </div>
 
     </div>
@@ -46,11 +44,32 @@
 
 export default {
     name: "TheTourWindow",
-    components: {},
 
+    data(){
+        return{
+            tour: {
+                start: '',
+                middle: [],
+                end: '',
+                date: null,
+            },
+        }
+    },
+    components: {},
+    methods: {
+        addTour() {
+            axios.post('/api/add-tour', this.tour).then(() => {
+                this.$router.push({ name: "my-stations" });
+            }).catch((error) => {
+                this.errors = error.response.data.errors
+            })
+        },
+        addStation(){
+            this.tour.middle.push({name: ''})
+        },
+        remove(index){
+            this.tour.middle.splice(index, 1)
+        },
+    }
 }
 </script>
-
-<style scoped>
-
-</style>
