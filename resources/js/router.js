@@ -5,7 +5,9 @@ import LoginPage from "./pages/LoginPage.vue";
 import RegisterPage from "./pages/RegisterPage.vue";
 import MyStations from "./pages/MyStations.vue";
 import AllStations from "./pages/AllStations.vue";
-import AddTour from "./pages/AddTour.vue";
+import SocialPage from "./pages/SocialPage.vue";
+import UserPage from "./pages/UserPage.vue";
+import TourPage from "./pages/TourPage.vue";
 
 const router = createRouter({
     history: createWebHistory(),
@@ -14,26 +16,21 @@ const router = createRouter({
             path: '/',
             redirect: '/all-stations',
             component: AllStations,
-
         },
         {
             path: '/all-stations',
             component: AllStations,
             name: 'all-stations',
-
-
         },
         {
             path: '/my-stations',
             component: MyStations,
             name: 'my-stations',
-
         },
         {
             path: '/login',
             component: LoginPage,
             name: 'login-page',
-
         },
         {
             path: '/register',
@@ -41,18 +38,27 @@ const router = createRouter({
             name: 'register-page',
 
         },
-        // to be adjusted
-        {
-            path: '/add-tour',
-            component: AddTour,
-            name: 'add-tour',
-        },
-        // to be adjusted
+
         {
             path: '/:notFound(.*)',
             component: NotFound,
-
         },
+        {
+            path: '/social',
+            component: SocialPage,
+            name: 'social-page'
+        },
+        {
+            path: '/profile',
+            component: UserPage,
+            name: 'profile'
+        },
+        {
+            path: '/tour',
+            component: TourPage,
+            name: 'tour-page'
+        },
+
     ]
 });
 

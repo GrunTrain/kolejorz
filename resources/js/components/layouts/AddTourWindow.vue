@@ -60,11 +60,11 @@ export default {
     components: {},
     methods: {
             addTour() {
-            axios.post('/api/add_tour', this.tour).then((response) => {
-                this.$router.push({ name: "all-stations" });
-            }).catch((error) =>{
-                this.errors = error.response.data.errors
-            })
+                axios.post('/api/add-tour', this.tour).then(() => {
+                    this.$router.push({ name: "my-stations" });
+                }).catch((error) => {
+                    this.errors = error.response.data.errors
+                })
             },
             addStation(){
                 this.tour.middle.push({name: ''})
@@ -76,7 +76,3 @@ export default {
         }
 }
 </script>
-
-<style scoped>
-
-</style>

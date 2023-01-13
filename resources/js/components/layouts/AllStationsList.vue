@@ -1,5 +1,5 @@
 <template>
-    <div class="sidebar bg-gray-600 w-full sm:w-1/2 lg:w-1/3 pt-8 px-8 overflow-auto scrollbar">
+    <div class="sidebar bg-gradient-to-t from-gray-600 to-gray-700 w-full sm:w-1/2 lg:w-1/3 pt-8 px-8 overflow-auto scrollbar">
         <the-search-window>
                 <input v-model.trim="searchInput" type="text" placeholder="Szukaj stacji" class="rounded-lg bg-gray-600 w-11/12 py-2 mr-2 px-2">
                 <button class="px-1" @click="clearInput">

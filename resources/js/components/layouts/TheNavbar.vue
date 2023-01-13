@@ -83,7 +83,9 @@ export default {
 
     computed: {
         ...mapGetters('auth', {
+<<<<<<< Updated upstream
             isAuth: 'getStatus'
+=======
         }),
 
         ...mapActions('auth', {
@@ -92,16 +94,37 @@ export default {
     },
 
     methods: {
+<<<<<<< Updated upstream
         dropMenu() {
             this.menuIsDropped = !this.menuIsDropped;
+=======
+        dropMainMenu() {
+            this.mainMenuIsDropped = !this.mainMenuIsDropped;
+        },
+
+        dropUserMenu() {
+            this.userMenuIsDropped = !this.userMenuIsDropped;
+        },
+
+        dropBothMenu() {
+            this.userMenuIsDropped = !this.userMenuIsDropped;
+            if (this.mainMenuIsDropped) {
+                this.dropMainMenu();
+            }
+>>>>>>> Stashed changes
         },
 
         logout() {
             axios.post('/api/logout')
             .then(() => {
-                this.$router.push({ name: "login-page" })
                 this.setUnauth
+<<<<<<< Updated upstream
             }).catch((error) => console.log(error))
+=======
+            }).catch((error) => console.log(error)).finally(() => {
+                location.reload()
+            })
+>>>>>>> Stashed changes
         },
     }
 }

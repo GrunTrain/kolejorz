@@ -1,6 +1,10 @@
 <?php
 
+<<<<<<< Updated upstream
 use App\Http\Controllers\Api\StationController;
+=======
+
+>>>>>>> Stashed changes
 use App\Http\Controllers\Api\TourController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -28,9 +32,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::middleware('auth:sanctum')->post('logout', [AuthenticatedSessionController::class, 'destroy']);
 
-Route::apiResource('stations', StationController::class);
 
 Route::post('register', [RegisteredUserController::class, 'store']);
 Route::post('login', [AuthenticatedSessionController::class, 'store']);
 
-Route::post('add_tour', [TourController::class, 'store']);

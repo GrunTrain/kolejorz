@@ -15,30 +15,19 @@ export default {
 
     computed: {
         ...mapGetters('auth', {
-            getStatus: 'getStatus'
+            getStatus: 'getStatus',
+            user: 'getUserData'
         }),
 
         ...mapActions('auth', {
             setAuth: 'setAuth',
-            setUnauth: 'setUnauth'
         }),
     },
 
-    methods: {
-        async getUser() {
-            await axios.get('/api/user')
-                .then(response => {
-                    if (response.data) {
-                        this.setAuth;
-                    }
-                }).catch(() => {
-                    this.setUnauth;
-                });
-        }
-    },
 
     mounted() {
-        this.getUser();
-    }
+        this.setAuth;
+    },
+
 }
 </script>
