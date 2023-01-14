@@ -108,7 +108,7 @@ export default {
         },
 
         insertStation() {
-            axios.post('/api/add-tour', {
+            axios.post('/api/tours', {
                 data: {
                     start: this.middle[0],
                     end: this.middle[this.middle.length - 1],

@@ -9,17 +9,19 @@
 import UserNavbar from "../components/layouts/UserNavbar.vue";
 import ChangePassword from "../components/UI/ChangePassword.vue";
 import ChangeName from "../components/UI/ChangeName.vue";
+import Statistics from "../components/UI/Statistics.vue";
 
 export default {
     components: {
         UserNavbar,
         ChangePassword,
         ChangeName,
+        Statistics,
     },
 
     data() {
         return {
-            currentComponent: 'change-password',
+            currentComponent: 'statistics',
         }
     },
 

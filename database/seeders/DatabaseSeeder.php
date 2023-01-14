@@ -20,7 +20,8 @@ class DatabaseSeeder extends Seeder
      * @return void
      */
 
-    const TEST_USERS = 50;
+    const TEST_USERS = 15;
+    const SEED = true;
 
     private function seedStations()
     {
@@ -36,30 +37,27 @@ class DatabaseSeeder extends Seeder
 
     private function addFriends()
     {
-        for ($i = 0; $i < self::TEST_USERS; $i++)
-        {
+        for ($i = 0; $i < self::TEST_USERS; $i++) {
             $numberOfFriends = random_int(2, 5);
             $friends = [];
-            for ($j = 0; $j < $numberOfFriends; $j++)
-            {
+            for ($j = 0; $j < $numberOfFriends; $j++) {
                 $friendId = $i;
-                while ($i == $friendId || 
-                       in_array($friendId, $friends)) 
-                $friendId = random_int(0, self::TEST_USERS-1);
+                while (
+                    $i == $friendId ||
+                    in_array($friendId, $friends)
+                )
+                    $friendId = random_int(0, self::TEST_USERS - 1);
                 array_push($friends, $friendId);
                 Friend::updateOrCreate(['user_id' => $i, 'observed_id' => $friendId]);
             }
-
         }
     }
 
     private function addTours()
     {
-        for ($i = 0; $i < self::TEST_USERS; $i++) 
-        {
+        for ($i = 0; $i < self::TEST_USERS; $i++) {
             $numberOfTours = random_int(1, 5);
-            for ($t = 0; $t < $numberOfTours; $t++)
-            {
+            for ($t = 0; $t < $numberOfTours; $t++) {
                 $start = DB::table('stations')
                     ->inRandomOrder()
                     ->first()->id;
@@ -75,23 +73,23 @@ class DatabaseSeeder extends Seeder
                         ->inRandomOrder()
                         ->first()->id;
                     while (in_array($station, $stations) || $station == $start || $station == $end)
-                    $station = DB::table('stations')
-                        ->inRandomOrder()
-                        ->first()->id;
+                        $station = DB::table('stations')
+                            ->inRandomOrder()
+                            ->first()->id;
 
                     array_push($stations, $station);
                 }
                 $start = Station::where('id', $start)->firstOrFail();
                 $end = Station::where('id',  $end)->firstOrFail();
                 $tour = Tour::create([
-                        'user_id' => $i,
-                        'start_station' =>  $start->id,
-                        'destination_station' => $end->id,
-                        'length' => 2 + $length,
-                        'description' => fake()->paragraph(),
-                        'is_public' => random_int(0, 1),
-                        'date' => now(),
-                    ]);
+                    'user_id' => $i,
+                    'start_station' =>  $start->id,
+                    'destination_station' => $end->id,
+                    'length' => 2 + $length,
+                    'description' => fake()->paragraph(),
+                    'is_public' => random_int(0, 1),
+                    'date' => now(),
+                ]);
 
                 $userStation = UserStation::firstOrCreate(
                     ["user_id" => $i, "station_id" => $start->id],
@@ -135,15 +133,17 @@ class DatabaseSeeder extends Seeder
                 $userStation->times_visited++;
                 $userStation->save();
             }
-            
         }
     }
 
     public function run()
     {
-            DatabaseSeeder::seedStations();
-            User::factory(self::TEST_USERS)->create();
+        DatabaseSeeder::seedStations();
+        if (self::SEED)
+        {
+            User::factory(max(self::TEST_USERS, 6))->create();
             DatabaseSeeder::addFriends();
             DatabaseSeeder::addTours();
+        }
     }
 }

@@ -95,4 +95,30 @@ class TourController extends Controller
             'alert' => "Dodano wycieczkę!",
         ]);
     }
+    public function index(Request $request)
+    {
+        $tours = Tour::where('user_id', Auth::id())->get();
+        $user_tours = $tours->count();
+        $len_min = $tours->first()->length;
+        $len_max = $tours->first()->length;
+        $len_mean = 0;
+        $public_tours = 0;
+
+        foreach ($tours as $tour) 
+        {
+            $len_mean += $tour->length;
+            $len_min = min($len_min, $tour->length);
+            $len_max = max($len_max, $tour->length);
+            if($tour->is_public) $public_tours++;
+        }
+        $len_mean /= $user_tours;
+
+        return response()->json([
+            'user_tours' => $user_tours,
+            'len_min' => $len_min,
+            'len_max' => $len_max,
+            'len_mean' => (int)$len_mean,
+            'public_tours' => $public_tours,
+        ]);
+    }
 }

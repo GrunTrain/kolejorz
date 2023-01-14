@@ -11,7 +11,7 @@
             </div>
             <div v-if="station.timesPassed">
                 <div class="flex justify-between flex-wrap">
-                    <p class="text-[#ffbf00]">odwiedzona ({{ station.timesPassed }})</p>
+                    <p class="text-[#ffbf00]">przejechana ({{ station.timesPassed }})</p>
                 </div>
             </div>
             <div class="flex flex-row justify-end">
