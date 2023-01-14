@@ -10,7 +10,6 @@ class Station extends Model
     use HasFactory;
 
     protected $fillable = [
-        'id',
         'name',
         'lat',
         'lon',

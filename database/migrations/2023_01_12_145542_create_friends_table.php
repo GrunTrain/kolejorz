@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::create('friends', function (Blueprint $table) {
             $table->id();
-            $table->integer("user1_id");
-            $table->integer("user2_id");
+            $table->integer("user_id");
+            $table->integer("observed_id");
             $table->timestamps();
         });
     }
