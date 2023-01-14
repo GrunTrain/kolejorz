@@ -1,28 +1,29 @@
 <template>
     <section class="flex flex-col-reverse flex-grow sm:flex-row mx-auto sm:h-[calc(100vh-76px)]">
-        <add-tour-window></add-tour-window>
-        <all-stations-list :marker="stationMarker"></all-stations-list>
-        <div class="sm:w-1/2 lg:w-2/3 h-96 sm:h-[calc(100vh-76px)] relative">
+        <all-stations-tour :marker="stationMarker" @send-name="setName"></all-stations-tour>
+        <the-tour-window :stationName="stationName"></the-tour-window>
+        <div class="w-full sm:w-1/3 lg:w-1/2 h-96 sm:h-[calc(100vh-76px)] relative">
             <the-map ref="TheMap" @set-station-marker="getStationMarker"></the-map>
         </div>
     </section>
 </template>
 
 <script>
-import AllStationsList from "../components/layouts/AllStationsList.vue";
+import AllStationsTour from "../components/layouts/AllStationsTour.vue";
+import TheTourWindow from "../components/layouts/TheTourWindow.vue";
 import TheMap from "../components/layouts/TheMap.vue";
 import stationsData from "@/stations.json";
-import AddTourWindow from "../components/layouts/AddTourWindow.vue";
 
 export default {
     components: {
-        AddTourWindow,
-        AllStationsList,
-        TheMap
+        AllStationsTour,
+        TheTourWindow,
+        TheMap,
     },
 
     data() {
         return {
+            stationName: '',
             stationMarker: ''
         }
     },
@@ -31,7 +32,12 @@ export default {
         this.changeMapStatus();
     },
 
+
     methods: {
+        setName(name) {
+            this.stationName = name;
+        },
+
         changeMapStatus() {
             this.$refs.TheMap.isFetched(true);
         },
@@ -46,7 +52,7 @@ export default {
             stations: stationsData,
         }
     },
-}
 
+}
 </script>
 

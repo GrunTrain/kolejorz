@@ -1,56 +1,144 @@
 <template>
-    <div class="mb-4 px-3 pb-4 pt-2 bg-gray-800 rounded-lg text-white justify-between">
-        <div class="flex justify-end">
-            <button>
-                <img class="rounded hover:bg-gray-600 p-1" src="https://img.icons8.com/ios/20/9AF4EA/close-window.png"/>
-            </button>
-        </div>
+    <div class="overflow-auto scrollbar sidebar w-full sm:w-1/2 lg:w-1/3 flex-col bg-gray-800 text-white h-full">
+        <div class="flex w-full justify-center">
+            <div class="flex flex-col sm:py-8 py-4 w-4/5">
+                <h1 class="font-semibold text-xl mb-2">Dodawanie wycieczki</h1>
+                <p v-if="middle.length < 1" class="flex text-teal-200 pt-2">
+                    Kliknij
+                    <img class="px-2" src="https://img.icons8.com/ios-filled/25/FFFFFF/plus--v1.png"/>
+                    aby dodać stację
+                </p>
 
-        <div class="flex flex-row">
-            <div class="flex flex-col space-y-1 w-9/12">
-                <p class="text-teal-200">Stacja początkowa:</p>
-                <p class="font-semibold">Nowy Dwor Mazowiecki (Nowy Dwór Mazowiecki)</p>
-            </div>
-            <button class="flex justify-end items-center mt-6 w-3/12" title="Usuń stację">
-                <img class="rounded hover:bg-gray-600 py-2 px-1" src="https://img.icons8.com/ios/20/FFFFFF/delete--v1.png"/>
-            </button>
-        </div>
-        <div class="flex flex-row">
-            <div class="flex flex-col space-y-1 my-2 w-9/12">
-                <p class="text-teal-200">Przez:</p>
-                <p class="font-semibold">Aleksandrow Kujawski (Aleksandrów Kujawski)</p>
-            </div>
-            <button class="flex justify-end items-center mt-6 w-3/12" title="Usuń stację">
-                <img class="rounded hover:bg-gray-600 py-2 px-1" src="https://img.icons8.com/ios/20/FFFFFF/delete--v1.png"/>
-            </button>
-        </div>
-        <div class="flex flex-row">
-            <div class="flex flex-col space-y-1 my-2 w-9/12">
-                <p class="text-teal-200">Stacja końcowa:</p>
-                <p class="font-semibold">Wałbrzych Miasto</p>
-            </div>
-            <button class="flex justify-end items-center mt-6 w-3/12" title="Usuń stację">
-                <img class="rounded hover:bg-gray-600 py-2 px-1" src="https://img.icons8.com/ios/20/FFFFFF/delete--v1.png"/>
-            </button>
-        </div>
+                <div v-if="middle.length < 1" class="text-xs border-b my-4 border-[#b2f5ea] text-white"></div>
 
-        <div class="flex flex-wrap flex-col items-center">
-            <base-button class="bg-teal-400 hover:bg-teal-500 w-2/3 lg:w-7/12">Dodaj wycieczkę</base-button>
-            <base-button class="bg-teal-600 hover:bg-teal-700 w-2/3 lg:w-7/12">Dodaj post</base-button>
+                <div class="flex flex-col">
+                    <div
+                        v-for="(station, index) in middle" :key="index"
+                        :class="(index === 0 || index === middle.length - 1) ? 'border-2 border-green-600' : 'border border-yellow-500'"
+                        class="flex flex-col text-white rounded-lg my-2 p-2">
+
+                        <div
+                            :class="(index === 0 || index === middle.length - 1) ? 'text-green-600 font-bold' : 'text-yellow-500 font-semibold'"
+                             class="flex items-center">
+
+                            <img v-if="index === 0" class="rounded hover:bg-gray-600 py-2 px-1" src="https://img.icons8.com/ios/20/FFFFFF/home--v1.png"/>
+                            <img v-if="(index === middle.length - 1 && middle.length > 1)" class="rounded hover:bg-gray-600 py-2 px-1" src="https://img.icons8.com/ios/20/FFFFFF/finish-flag--v1.png"/>
+                            <img v-if="(index !== 0 && index !== middle.length - 1)" class="rounded hover:bg-gray-600 py-2 px-1" src="https://img.icons8.com/ios/20/FFFFFF/final-state--v1.png"/>
+                            {{ station }}
+                        </div>
+
+                        <div class="flex justify-end">
+                            <button @click="removeStation(index)" class="items-center" title="Usuń stację">
+                                <img class="rounded hover:bg-gray-600 py-2 px-1" src="https://img.icons8.com/ios/20/FFFFFF/delete--v1.png"/>
+                            </button>
+                        </div>
+
+                    </div>
+                </div>
+
+                <p class="font-semibold py-2">Data:</p>
+                <input v-model="date" type="date" class="font-semibold text-red-900 rounded-lg pl-2 px-2 py-2 w-full">
+                <span v-if="error" class="break-words" style="color: red">{{ error }}</span>
+
+                <div class="flex items-center py-2">
+                    <input
+                        v-model="agreement"
+                        type="checkbox" class="w-4 h-4 text-teal-600 bg-gray-100 border-gray-300 rounded focus:ring-teal-500 dark:focus:ring-teal-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+
+                    <label class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Czy chcesz dodać post?</label>
+                </div>
+
+                <p v-if="agreement" class="font-semibold py-2">Opis:</p>
+                <textarea v-if="agreement" v-model="description" class="font-semibold text-red-900 rounded-lg pl-2 pt-2 pb-8 w-full"></textarea>
+
+                <base-button v-if="middle.length > 1" @click="addTour" class="bg-teal-500 hover:bg-teal-600">
+                    <p v-if="agreement">
+                        Dodaj wycieczkę i post
+                    </p>
+                    <p v-else>
+                        Dodaj wycieczkę
+                    </p>
+                </base-button>
+
+                <alert-pop-up v-if="alert">
+                    {{ alert }}
+                </alert-pop-up>
+
+            </div>
         </div>
 
     </div>
 </template>
 
 <script>
+import AlertPopUp from "@/components/UI/AlertPopUp.vue"
 
 export default {
-    name: "TheTourWindow",
-    components: {},
+    components: {
+        AlertPopUp
+    },
 
+    props: ['stationName'],
+
+    data(){
+        return{
+            middle: [],
+            date: '',
+            description: '',
+
+            agreement: false,
+            error: '',
+            alert: '',
+        }
+    },
+
+    watch: {
+      stationName() {
+          this.middle.push(this.stationName);
+      }
+    },
+
+    methods: {
+        addTour() {
+            if (this.date !== '') {
+                this.insertStation();
+            } else {
+                this.error = 'Nie podano daty!';
+            }
+        },
+
+        insertStation() {
+            axios.post('/api/add-tour', {
+                data: {
+                    start: this.middle[0],
+                    end: this.middle[this.middle.length - 1],
+                    middle: this.middle.slice(1, -1),
+                    date: this.date,
+                    description: this.description,
+                }
+            }).then((response) => {
+                this.middle = [];
+                this.date = '';
+                this.description = '';
+                this.error = '';
+                this.showAlert(response.data.alert);
+            }).catch((error) => {
+                this.error = error.response.data.errors
+            })
+        },
+
+        removeStation(index) {
+            this.middle.splice(index, 1)
+        },
+
+        showAlert(alert) {
+            this.alert = alert;
+            setTimeout(this.hideAlert, 2000);
+        },
+
+        hideAlert() {
+            this.alert = '';
+        }
+    }
 }
 </script>
-
-<style scoped>
-
-</style>

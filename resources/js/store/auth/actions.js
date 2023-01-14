@@ -1,9 +1,13 @@
 export default {
     setAuth(context) {
-        context.commit('changeStatus', true)
+        axios.get('/api/user')
+            .then(response => {
+                if (response.data) {
+                    context.commit('changeStatus', true)
+                    context.commit('setUser', response.data)
+                }
+            }).catch(() => {
+            context.commit('changeStatus', false)
+        });
     },
-
-    setUnauth(context) {
-        context.commit('changeStatus', false)
-    }
 }

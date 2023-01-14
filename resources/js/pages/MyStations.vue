@@ -32,7 +32,6 @@ export default {
         getStations() {
             axios.get('/api/stations/id')
                 .then(response => {
-                    console.log(response)
                     response.data.data.forEach(station => {
                         this.stationsData.push(station)
                     })

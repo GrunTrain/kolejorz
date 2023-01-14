@@ -6,15 +6,27 @@
                 <img src="https://img.icons8.com/ios-filled/20/d3d3d3/delete-sign--v1.png"/>
             </button>
         </the-search-window>
-        <span v-for="station in filteredStations" :key="station.idStr">
-            <all-station-dashboard :station="station"></all-station-dashboard>
+
+        <span v-for="station in filteredStations">
+            <div class="flex flex-col my-4 p-3 bg-gray-800 rounded-lg text-white">
+                <div class="flex flex-col space-y-2 break-words">
+                    <p class="font-semibold lg:text-xl">
+                        {{ station.title }}
+                    </p>
+                </div>
+                <div class="flex items-center justify-end sm:space-x-0">
+                    <button @click="$emit('send-name', station.title)" title="Dodaj do przejechanych">
+                        <img class="rounded hover:bg-gray-600 py-3 px-2"
+                             src="https://img.icons8.com/ios-filled/20/FFFFFF/plus--v1.png"/>
+                    </button>
+                </div>
+            </div>
         </span>
     </div>
 </template>
 
 <script>
 import TheSearchWindow from "@/components/layouts/TheSearchWindow.vue";
-import AllStationDashboard from "@/components/UI/AllStationDashboard.vue";
 
 export default {
     inject: ['stations'],
@@ -22,7 +34,6 @@ export default {
 
     components: {
         TheSearchWindow,
-        AllStationDashboard,
     },
 
     data() {
@@ -51,4 +62,6 @@ export default {
         }
     }
 }
+
 </script>
+

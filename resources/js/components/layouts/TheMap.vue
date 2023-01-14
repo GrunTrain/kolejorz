@@ -63,7 +63,7 @@ export default {
                             fillColor: '#14B8A6',
                             fillOpacity: 1
                         });
-                    marker.title = station.title
+                    marker.title = station.name
                     marker.addTo(markers);
                 } else if (station.status === 'przejechana') {
                     const marker = L.circleMarker([station.lat, station.lon],
@@ -74,7 +74,7 @@ export default {
                             fillColor: '#ffbf00',
                             fillOpacity: 1
                         });
-                    marker.title = station.title
+                    marker.title = station.name
                     marker.addTo(markers);
                 } else {
                     const marker = L.circleMarker([station.lat, station.lon],
@@ -102,7 +102,7 @@ export default {
 
 <style>
 #mapContainer {
-    position: absolute;
+    position: sticky;
     height: 100%;
     width: 100%;
 }
