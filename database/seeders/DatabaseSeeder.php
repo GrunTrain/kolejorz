@@ -21,14 +21,12 @@ class DatabaseSeeder extends Seeder
      */
 
     const TEST_USERS = 50;
-    const CREATE_TEST_DATA = true;
 
     private function seedStations()
     {
         $json = json_decode(file_get_contents("resources/js/stations.json"), true);
         foreach ($json as &$station) {
             Station::updateOrCreate([
-                'id' => $station['id'],
                 'name' => $station['title'],
                 'lat' => $station['lat'],
                 'lon' => $station['lon'],
@@ -40,19 +38,16 @@ class DatabaseSeeder extends Seeder
     {
         for ($i = 0; $i < self::TEST_USERS; $i++)
         {
-            $numberOfFriends = random_int(2, 4);
+            $numberOfFriends = random_int(2, 5);
             $friends = [];
             for ($j = 0; $j < $numberOfFriends; $j++)
             {
                 $friendId = $i;
                 while ($i == $friendId || 
-                       in_array($friendId, $friends) || 
-                       Friend::checkReverseOrder($i, $friendId)) 
-                {
-                    $friendId = random_int(0, self::TEST_USERS-1);
-                }
+                       in_array($friendId, $friends)) 
+                $friendId = random_int(0, self::TEST_USERS-1);
                 array_push($friends, $friendId);
-                Friend::updateOrCreate(['user1_id' => $i, 'user2_id' => $friendId]);
+                Friend::updateOrCreate(['user_id' => $i, 'observed_id' => $friendId]);
             }
 
         }
@@ -62,7 +57,7 @@ class DatabaseSeeder extends Seeder
     {
         for ($i = 0; $i < self::TEST_USERS; $i++) 
         {
-            $numberOfTours = random_int(1, 4);
+            $numberOfTours = random_int(1, 5);
             for ($t = 0; $t < $numberOfTours; $t++)
             {
                 $start = DB::table('stations')
@@ -146,12 +141,9 @@ class DatabaseSeeder extends Seeder
 
     public function run()
     {
-        if (self::CREATE_TEST_DATA)
-        {
             DatabaseSeeder::seedStations();
             User::factory(self::TEST_USERS)->create();
             DatabaseSeeder::addFriends();
             DatabaseSeeder::addTours();
-        }
     }
 }
