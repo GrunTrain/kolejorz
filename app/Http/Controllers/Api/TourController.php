@@ -17,14 +17,12 @@ class TourController extends Controller
         if (!$request->input("date")) return response()->json(["alert" => "Nie podano daty!"]);
         $start = Station::where('name', '=', $request->input("start"))->firstOrFail();
         $end = Station::where('name', '=', $request->input("end"))->firstOrFail();
-        $description = '';
-        if ($request->input('description')) $description = $request->input('description');
             $tour = Tour::create([
                 'user_id' => Auth::id(),
                 'start_station' =>  $start->id,
                 'destination_station' => $end->id,
                 'length' => 2 + count($request->input("middle")),
-                'description' => $description,
+                'description' => $request->input('description', ''),
                 'is_public' => true,
                 'date' => $request->input("date"),
             ]);
@@ -33,7 +31,7 @@ class TourController extends Controller
             ["user_id" => Auth::id(), "station_id" => $start->id],
             [
                 "user_id" => Auth::id(),
-                "statioin_id" => $start->id,
+                "station_id" => $start->id,
                 "times_passed" => 0,
                 "times_visited" => 0,
             ]
@@ -50,7 +48,7 @@ class TourController extends Controller
             $userStation = UserStation::firstOrCreate(["user_id" => Auth::id(), "station_id" => $station->id],
             [
             "user_id" => Auth::id(),
-            "statioin_id" => $station->id,
+            "station_id" => $station->id,
             "times_passed" => 0,
             "times_visited" => 0,
             ]);
@@ -62,7 +60,7 @@ class TourController extends Controller
             ["user_id" => Auth::id(), "station_id" => $end->id],
             [
                 "user_id" => Auth::id(),
-                "statioin_id" => $end->id,
+                "station_id" => $end->id,
                 "times_passed" => 0,
                 "times_visited" => 0,
             ]
