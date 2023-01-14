@@ -44,7 +44,7 @@ export default {
 
     methods: {
         insertStation() {
-            axios.post('/api/stations', this.stationData)
+            axios.post('/api/user_stations', this.stationData)
                 .then(response => {
                     this.alert = response.data.alert;
                     this.$emit('pass-alert', this.alert);

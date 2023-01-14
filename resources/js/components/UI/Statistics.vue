@@ -19,7 +19,7 @@ export default {
     },
     data() {
         return {
-            currentComponent: "summary",
+            currentComponent: "stations",
         }
     },
     emits: ['set-component'],
