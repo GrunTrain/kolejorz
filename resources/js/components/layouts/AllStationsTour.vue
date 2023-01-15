@@ -11,11 +11,11 @@
             <div class="flex flex-col my-4 p-3 bg-gray-800 rounded-lg text-white">
                 <div class="flex flex-col space-y-2 break-words">
                     <p class="font-semibold lg:text-xl">
-                        {{ station.title }}
+                        {{ station.name }}
                     </p>
                 </div>
                 <div class="flex items-center justify-end sm:space-x-0">
-                    <button @click="$emit('send-name', station.title)" title="Dodaj do przejechanych">
+                    <button @click="$emit('send-name', station.name)" title="Dodaj do przejechanych">
                         <img class="rounded hover:bg-gray-600 py-3 px-2"
                              src="https://img.icons8.com/ios-filled/20/FFFFFF/plus--v1.png"/>
                     </button>
@@ -51,7 +51,7 @@ export default {
     computed: {
         filteredStations() {
             return this.stations.filter(station => {
-                return station.title.toLowerCase().includes(this.searchInput.toLowerCase());
+                return station.name.toLowerCase().includes(this.searchInput.toLowerCase());
             })
         },
     },
