@@ -4,6 +4,8 @@
 use App\Http\Controllers\Api\TourController;
 use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Api\UserStationController;
+use App\Http\Controllers\Api\StationController;
+use App\Http\Controllers\Api\FriendController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Laravel\Fortify\Http\Controllers\RegisteredUserController;
@@ -33,8 +35,15 @@ Route::middleware('auth:sanctum')->post('logout', [AuthenticatedSessionControlle
 
 Route::post('register', [RegisteredUserController::class, 'store']);
 Route::post('login', [AuthenticatedSessionController::class, 'store']);
-Route::post('add-tour', [TourController::class, 'store']);
 
-Route::apiResource('stations', UserStationController::class);
+Route::apiResource('friends', FriendController::class);
+Route::get('tours/statistics', [TourController::class, 'statistics']);
+Route::get('profile/friends/{id}', [FriendController::class, 'friendsByUserId']);
+Route::delete('profile/friends/{id}', [FriendController::class, 'deleteFriend']);
+Route::post('profile/friends', [FriendController::class, 'addFriendToCurrentUser']);
+Route::get('profile/active', [UserController::class, 'activeUser']);
+Route::apiResource('tours', TourController::class);
+Route::apiResource('user_stations', UserStationController::class);
+Route::apiResource('stations', StationController::class);
 Route::apiResource('profile', UserController::class);
 

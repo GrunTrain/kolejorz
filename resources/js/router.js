@@ -7,7 +7,9 @@ import MyStations from "./pages/MyStations.vue";
 import AllStations from "./pages/AllStations.vue";
 import SocialPage from "./pages/SocialPage.vue";
 import UserPage from "./pages/UserPage.vue";
+import FriendsPage from "./pages/FriendsPage.vue";
 import TourPage from "./pages/TourPage.vue";
+import AdminPage from "./pages/AdminPage.vue";
 
 const router = createRouter({
     history: createWebHistory(),
@@ -38,7 +40,6 @@ const router = createRouter({
             name: 'register-page',
 
         },
-
         {
             path: '/:notFound(.*)',
             component: NotFound,
@@ -54,9 +55,19 @@ const router = createRouter({
             name: 'profile'
         },
         {
+            path: '/profile/friends',
+            component: FriendsPage,
+            name: 'friends'
+        },
+        {
             path: '/tour',
             component: TourPage,
             name: 'tour-page'
+        },
+        {
+            path: '/admin',
+            component: AdminPage,
+            name: 'admin'
         },
 
     ]

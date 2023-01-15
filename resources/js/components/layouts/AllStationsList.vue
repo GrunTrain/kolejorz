@@ -6,7 +6,7 @@
                 <img src="https://img.icons8.com/ios-filled/20/d3d3d3/delete-sign--v1.png"/>
             </button>
         </the-search-window>
-        <span v-for="station in filteredStations" :key="station.idStr">
+        <span v-for="station in filteredStations" :key="station.id">
             <all-station-dashboard :station="station"></all-station-dashboard>
         </span>
     </div>
@@ -40,7 +40,7 @@ export default {
     computed: {
         filteredStations() {
             return this.stations.filter(station => {
-                return station.title.toLowerCase().includes(this.searchInput.toLowerCase());
+                return station.name.toLowerCase().includes(this.searchInput.toLowerCase());
             })
         },
     },

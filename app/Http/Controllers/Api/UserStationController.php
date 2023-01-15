@@ -69,4 +69,37 @@ class  UserStationController extends Controller
         $station = UserStation::where('station_id', $id)->where('user_id', Auth::id());
         $station->delete();
     }
+
+    public function index(Request $request)
+    {
+        $stations = UserStation::where('user_id', Auth::id())->get();
+        $favourite_station = 0;
+        $favourite_station_records = 0;
+        $stations_passed = 0;
+        $stations_visited = 0;
+        $total_passes = 0;
+        $total_visits = 0;
+
+        foreach ($stations as $station)
+        {
+            if ($station->times_passed + $station->times_visited > $favourite_station_records) 
+            {
+                $favourite_station_records = $station->times_passed + $station->times_visited;
+                $favourite_station = Station::where('id', $station->station_id)->first()->name;
+            }
+            if ($station->times_passed) $stations_passed++;
+            if ($station->times_visited) $stations_visited++;
+            $total_passes += $station->times_passed;
+            $total_visits += $station->times_visited;
+        }
+
+        return response()->json([
+            'favourite_station' => $favourite_station,
+            'favourite_station_records' => $favourite_station_records,
+            'stations_passed' => $stations_passed,
+            'stations_visited' => $stations_visited,
+            'total_passes' => $total_passes,
+            'total_visits' => $total_visits,
+        ]);
+    }
 }

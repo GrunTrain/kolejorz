@@ -56,10 +56,13 @@
                     </div>
                     <ul class="py-1 text-sm text-gray-700 dark:text-gray-200">
                         <li>
-                            <router-link to="profile" @click="dropBothMenu" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Edycja profilu</router-link>
+                            <router-link to="profile" @click="dropBothMenu" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Profil</router-link>
                         </li>
                         <li>
-                            <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Statystyki</a>
+                            <router-link to="profile/friends" @click="dropBothMenu" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Obserwowani</router-link>
+                        </li>
+                        <li v-if="this.user.isAdmin">
+                            <router-link to="/admin" @click="dropBothMenu" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Admin Panel</router-link>
                         </li>
                     </ul>
                     <div class="py-1 hover:cursor-pointer">
@@ -98,7 +101,7 @@ export default {
         return {
             mainMenuIsDropped: false,
             userMenuIsDropped: false,
-            userName: 'Gall Anonim'
+            userName: 'Gall Anonim',
         }
     },
 
