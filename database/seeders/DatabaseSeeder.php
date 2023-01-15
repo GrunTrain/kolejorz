@@ -10,6 +10,7 @@ use App\Models\Tour;
 use App\Models\TourStation;
 use App\Models\User;
 use App\Models\UserStation;
+use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
 
 class DatabaseSeeder extends Seeder
@@ -55,6 +56,7 @@ class DatabaseSeeder extends Seeder
 
     private function addTours()
     {
+        $stations_count = Station::all()->count();
         for ($i = 1; $i <= self::TEST_USERS; $i++) {
             $numberOfTours = random_int(1, 5);
             for ($t = 0; $t < $numberOfTours; $t++) {
@@ -69,13 +71,9 @@ class DatabaseSeeder extends Seeder
                 $length = random_int(2, 15);
                 $stations = [];
                 for ($j = 0; $j < $length; $j++) {
-                    $station = DB::table('stations')
-                        ->inRandomOrder()
-                        ->first()->id;
+                    $station = Station::where("id", random_int(1, $stations_count))->first()->id;
                     while (in_array($station, $stations) || $station == $start || $station == $end)
-                        $station = DB::table('stations')
-                            ->inRandomOrder()
-                            ->first()->id;
+                        $station = Station::where("id", random_int(1, $stations_count))->first()->id;
 
                     array_push($stations, $station);
                 }
@@ -141,6 +139,13 @@ class DatabaseSeeder extends Seeder
         DatabaseSeeder::seedStations();
         if (self::SEED)
         {
+            User::create([
+            'name' => "Zielony Mleczarz",
+            'email' => "admin@grinmilk.pl",
+            'email_verified_at' => now(),
+            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+            'remember_token' => Str::random(10),
+            'isAdmin' => 1,]);
             User::factory(max(self::TEST_USERS, 6))->create();
             DatabaseSeeder::addFriends();
             DatabaseSeeder::addTours();

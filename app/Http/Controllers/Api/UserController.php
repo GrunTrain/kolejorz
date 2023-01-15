@@ -56,5 +56,8 @@ class UserController extends Controller
         }
         $user->delete();
     }
-
+    public function activeUser()
+    {
+        return UserResource::make(User::where('id', Auth::id())->first());
+    }
 }

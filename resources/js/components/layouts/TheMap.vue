@@ -85,7 +85,7 @@ export default {
                             fillColor: '#2784d3',
                             fillOpacity: 1
                         });
-                    marker.title = station.title
+                    marker.title = station.name
                     marker.addTo(markers);
                 }
             })
