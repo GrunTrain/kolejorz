@@ -20,7 +20,7 @@ class DatabaseSeeder extends Seeder
      * @return void
      */
 
-    const TEST_USERS = 15;
+    const TEST_USERS = 35;
     const SEED = true;
 
     private function seedStations()
@@ -37,7 +37,7 @@ class DatabaseSeeder extends Seeder
 
     private function addFriends()
     {
-        for ($i = 0; $i < self::TEST_USERS; $i++) {
+        for ($i = 1; $i <= self::TEST_USERS; $i++) {
             $numberOfFriends = random_int(2, 5);
             $friends = [];
             for ($j = 0; $j < $numberOfFriends; $j++) {
@@ -46,7 +46,7 @@ class DatabaseSeeder extends Seeder
                     $i == $friendId ||
                     in_array($friendId, $friends)
                 )
-                    $friendId = random_int(0, self::TEST_USERS - 1);
+                    $friendId = random_int(1, self::TEST_USERS - 1);
                 array_push($friends, $friendId);
                 Friend::updateOrCreate(['user_id' => $i, 'observed_id' => $friendId]);
             }
@@ -55,7 +55,7 @@ class DatabaseSeeder extends Seeder
 
     private function addTours()
     {
-        for ($i = 0; $i < self::TEST_USERS; $i++) {
+        for ($i = 1; $i <= self::TEST_USERS; $i++) {
             $numberOfTours = random_int(1, 5);
             for ($t = 0; $t < $numberOfTours; $t++) {
                 $start = DB::table('stations')
@@ -144,6 +144,10 @@ class DatabaseSeeder extends Seeder
             User::factory(max(self::TEST_USERS, 6))->create();
             DatabaseSeeder::addFriends();
             DatabaseSeeder::addTours();
+            // for ($i = 1; $i<Station::all()->count();$i++)
+            // {
+            //     UserStation::updateOrCreate(['station_id' => $i, 'user_id' => 1, 'times_passed' => 1, 'times_visited' => 1]);
+            // }
         }
     }
 }

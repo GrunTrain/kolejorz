@@ -37,6 +37,7 @@ Route::post('register', [RegisteredUserController::class, 'store']);
 Route::post('login', [AuthenticatedSessionController::class, 'store']);
 
 Route::apiResource('friends', FriendController::class);
+Route::get('tours/statistics', [TourController::class, 'statistics']);
 Route::apiResource('tours', TourController::class);
 Route::apiResource('user_stations', UserStationController::class);
 Route::apiResource('stations', StationController::class);

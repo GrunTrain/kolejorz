@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Models\Tour;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Resources\TourResource;
 use App\Http\Controllers\Controller;
 use App\Models\Station;
+use App\Models\Tour;
 use App\Models\TourStation;
 use App\Models\UserStation;
 
@@ -97,6 +98,33 @@ class TourController extends Controller
     }
     public function index(Request $request)
     {
+        return TourResource::collection(Tour::all());
+    }
+    public function destroy($id)
+    {
+        $tour = Tour::where('id', $id)->first();
+        $tour_stations = TourStation::where('tour_id', $tour->id)->get();
+        foreach($tour_stations as $tour_station)
+        {
+            $user_stations = UserStation::where('station_id', $tour_station->station_id)->get();
+            foreach($user_stations as $user_station)
+            {
+                $user_station->times_passed--;
+                $user_station->save();
+            }
+            $tour_station->delete();
+        }
+        $user_station = UserStation::where('station_id', $tour->start_station)->first();
+        $user_station->times_visited--;
+        $user_station->save();
+        $user_station = UserStation::where('station_id', $tour->destination_station)->first();
+        $user_station->times_visited--;
+        $user_station->save();
+        $tour->delete();
+    }
+
+    public function statistics()
+    {
         $tours = Tour::where('user_id', Auth::id())->get();
         $user_tours = $tours->count();
         $len_min = $tours->first()->length;
@@ -104,12 +132,11 @@ class TourController extends Controller
         $len_mean = 0;
         $public_tours = 0;
 
-        foreach ($tours as $tour) 
-        {
+        foreach ($tours as $tour) {
             $len_mean += $tour->length;
             $len_min = min($len_min, $tour->length);
             $len_max = max($len_max, $tour->length);
-            if($tour->is_public) $public_tours++;
+            if ($tour->is_public) $public_tours++;
         }
         $len_mean /= $user_tours;
 

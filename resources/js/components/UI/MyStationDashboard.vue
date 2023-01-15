@@ -34,7 +34,7 @@ export default {
 
     methods: {
         deleteStation(id) {
-            axios.delete('/api/stations/' + id).then(() => {
+            axios.delete('/api/user_stations/' + id).then(() => {
                 location.reload();
             })
         }

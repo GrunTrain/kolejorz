@@ -30,7 +30,7 @@ export default {
             this.stationMarker = stationTitle;
         },
         getStations() {
-            axios.get('/api/stations/id')
+            axios.get('/api/user_stations/id')
                 .then(response => {
                     response.data.data.forEach(station => {
                         this.stationsData.push(station)

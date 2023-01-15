@@ -22,7 +22,7 @@ export default {
     },
 
     mounted() {
-        axios.get("/api/tours").then((response) =>
+        axios.get("/api/tours/statistics").then((response) =>
         {
             this.tours_amount = response.data['user_tours'];
             this.tour_shortest = response.data['len_min'];

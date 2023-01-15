@@ -14,9 +14,9 @@ return new class extends Migration
     public function up()
     {
         Schema::create('tour_stations', function (Blueprint $table) {
+            $table->id();
             $table->integer("tour_id");
             $table->integer("station_id");
-            $table->primary(["tour_id", "station_id"]);
             $table->timestamps();
         });
     }

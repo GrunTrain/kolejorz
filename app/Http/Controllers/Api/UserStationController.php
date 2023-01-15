@@ -85,7 +85,7 @@ class  UserStationController extends Controller
             if ($station->times_passed + $station->times_visited > $favourite_station_records) 
             {
                 $favourite_station_records = $station->times_passed + $station->times_visited;
-                $favourite_station = Station::where('id', $station->station_id)->get()[0]->name;
+                $favourite_station = Station::where('id', $station->station_id)->first()->name;
             }
             if ($station->times_passed) $stations_passed++;
             if ($station->times_visited) $stations_visited++;
