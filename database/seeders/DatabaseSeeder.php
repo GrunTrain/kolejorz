@@ -28,7 +28,7 @@ class DatabaseSeeder extends Seeder
         $json = json_decode(file_get_contents("resources/js/stations.json"), true);
         foreach ($json as &$station) {
             Station::updateOrCreate([
-                'name' => $station['title'],
+                'name' => $station['name'],
                 'lat' => $station['lat'],
                 'lon' => $station['lon'],
             ]);
