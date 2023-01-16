@@ -18,6 +18,11 @@ const router = createRouter({
             component: AllStations,
         },
         {
+            path: '/home',
+            redirect: '/all-stations',
+            component: AllStations,
+        },
+        {
             path: '/all-stations',
             component: AllStations,
             name: 'all-stations',
