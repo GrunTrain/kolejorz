@@ -43,8 +43,7 @@
                 <div class="flex items-center py-2">
                     <input
                         v-model="agreement"
-                        type="checkbox" class="w-4 h-4 text-teal-600 bg-gray-100 border-gray-300 rounded focus:ring-teal-500 dark:focus:ring-teal-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-
+                        type="checkbox" class="w-4 h-4">
                     <label class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Czy chcesz dodać post?</label>
                 </div>
 

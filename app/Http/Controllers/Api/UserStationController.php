@@ -70,7 +70,7 @@ class  UserStationController extends Controller
         $station->delete();
     }
 
-    public function index(Request $request)
+    public function index()
     {
         $stations = UserStation::where('user_id', Auth::id())->get();
         $favourite_station = 0;
@@ -82,7 +82,7 @@ class  UserStationController extends Controller
 
         foreach ($stations as $station)
         {
-            if ($station->times_passed + $station->times_visited > $favourite_station_records) 
+            if ($station->times_passed + $station->times_visited > $favourite_station_records)
             {
                 $favourite_station_records = $station->times_passed + $station->times_visited;
                 $favourite_station = Station::where('id', $station->station_id)->first()->name;

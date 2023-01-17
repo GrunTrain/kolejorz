@@ -52,13 +52,15 @@ const router = createRouter({
         {
             path: '/profile',
             component: UserPage,
-            name: 'profile'
+            name: 'profile',
         },
+
         {
-            path: '/profile/friends',
+            path: '/friends',
             component: FriendsPage,
-            name: 'friends'
+            name: 'friends',
         },
+
         {
             path: '/tour',
             component: TourPage,

@@ -3,6 +3,7 @@
         <user-navbar @set-component="setSelectedComponent"></user-navbar>
         <component @set-component="setSelectedComponent" :is="currentComponent"></component>
     </div>
+
 </template>
 
 <script>
