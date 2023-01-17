@@ -12,7 +12,7 @@
                 <span class="flex items-center ml-2 font-bold text-3xl">Kolejorz</span>
             </router-link>
         </div>
-        <div class="block lg:hidden">
+        <div class="block xl:hidden">
             <button
                 @click="dropMainMenu"
                 class="flex items-center px-3 py-2 border rounded text-teal-200 border-teal-400 hover:text-white hover:border-white">
@@ -21,25 +21,27 @@
         </div>
         <div
             :class="mainMenuIsDropped ? 'block' : 'hidden'"
-            class="w-full flex-grow lg:flex lg:items-center lg:w-auto lg:border-0 border-t-2 border-teal-200 pb-2 lg:pb-0">
-            <div class="lg:flex-grow">
-                <router-link to="/" @click="dropMainMenu" class="block mt-6 lg:inline-block lg:mt-0 text-teal-200 lg:ml-12 font-semibold hover:text-teal-100">
+            class="w-full flex-grow xl:flex xl:items-center xl:w-auto xl:border-0 border-t-2 border-teal-200 pb-2 xl:pb-0">
+            <div class="xl:flex-grow">
+                <router-link to="/" @click="dropMainMenu" class="block mt-6 xl:inline-block xl:mt-0 text-teal-200 xl:ml-12 font-semibold hover:text-teal-100">
                     Wszystkie stacje
                 </router-link>
-                <router-link v-if="isAuth" to="/my-stations" @click="dropMainMenu" class="block mt-6 lg:inline-block lg:mt-0 text-teal-200 lg:ml-12 font-semibold hover:text-teal-100">
+                <router-link v-if="isAuth" to="/my-stations" @click="dropMainMenu" class="block mt-6 xl:inline-block xl:mt-0 text-teal-200 xl:ml-12 font-semibold hover:text-teal-100">
                     Moje stacje
                 </router-link>
-                <router-link to="#" v-if="isAuth" @click="dropMainMenu" class="block mt-6 lg:inline-block lg:mt-0 text-teal-200 lg:ml-12 font-semibold hover:text-teal-100">
+                <router-link to="#" v-if="isAuth" @click="dropMainMenu" class="block mt-6 xl:inline-block xl:mt-0 text-teal-200 xl:ml-12 font-semibold hover:text-teal-100">
                     Moje wycieczki
                 </router-link>
-
-                <router-link v-if="isAuth" to="/tour" class="block mt-6 lg:inline-block lg:mt-0 text-teal-200 lg:ml-12 font-semibold hover:text-teal-100">
+                <router-link v-if="isAuth" to="/tour" class="block mt-6 xl:inline-block xl:mt-0 text-teal-200 xl:ml-12 font-semibold hover:text-teal-100">
                     Dodaj wycieczkę
+                </router-link>
+                <router-link v-if="isAuth" :to="{name: 'social-page'}" class="block mt-6 xl:inline-block xl:mt-0 text-teal-200 xl:ml-12 font-semibold hover:text-teal-100">
+                    Tablica
                 </router-link>
 
             </div>
 
-            <div v-if="isAuth" class="mt-7 mb-3 lg:pr-20 lg:mt-0 lg:mb-0">
+            <div v-if="isAuth" class="mt-7 mb-3 xl:pr-20 xl:mt-0 xl:mb-0">
                 <button
                     @click="dropUserMenu"
                     class="flex items-center text-sm font-medium text-white hover:text-gray-300 rounded-full" type="button">
@@ -51,38 +53,38 @@
                 <div
                     :class="userMenuIsDropped ? 'block' : 'hidden'"
                     class="z-10 absolute bg-gray-700 divide-y divide-gray-100 rounded-lg shadow w-44 divide-gray-600">
-                    <div class="px-4 py-3 text-sm text-gray-900 dark:text-white">
+                    <div class="px-4 py-3 text-sm text-white">
                         <div class="truncate">{{ user.email }}</div>
                     </div>
-                    <ul class="py-1 text-sm text-gray-700 dark:text-gray-200">
+                    <ul class="py-1 text-sm text-white">
                         <li>
-                            <router-link to="profile" @click="dropBothMenu" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Profil</router-link>
+                            <router-link :to="{ name: 'profile' }" @click="dropBothMenu" class="block px-4 py-2 hover:bg-gray-600 text-white">Profil</router-link>
                         </li>
                         <li>
-                            <router-link to="profile/friends" @click="dropBothMenu" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Obserwowani</router-link>
+                            <router-link :to="{ name: 'friends' }" @click="dropBothMenu" class="block px-4 py-2 hover:bg-gray-600 hover:text-white">Obserwowani</router-link>
                         </li>
                         <li v-if="this.user.isAdmin">
-                            <router-link to="/admin" @click="dropBothMenu" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Admin Panel</router-link>
+                            <router-link to="/admin" @click="dropBothMenu" class="block px-4 py-2 hover:bg-gray-600 text-white">Admin Panel</router-link>
                         </li>
                     </ul>
                     <div class="py-1 hover:cursor-pointer">
-                        <a @click="dropMenuAndLogout" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Wyloguj się</a>
+                        <a @click="dropMenuAndLogout" class="block px-4 py-2 text-sm hover:bg-gray-600 text-white">Wyloguj się</a>
                     </div>
                 </div>
             </div>
 
 
-            <router-link v-if="!isAuth" to="/login" class="inline-block flex justify-left lg:justify-center lg:w-28 text-sm lg:px-2 py-2 lg:border rounded lg:bg-white text-white lg:text-black lg:border-white lg:hover:bg-gray-300 mt-8 lg:mt-0 hover:font-semibold lg:hover:font-normal">
+            <router-link v-if="!isAuth" to="/login" class="inline-block flex justify-left xl:justify-center xl:w-28 text-sm xl:px-2 py-2 xl:border rounded xl:bg-white text-white xl:text-black xl:border-white xl:hover:bg-gray-300 mt-8 xl:mt-0 hover:font-semibold xl:hover:font-normal">
                 <img
-                    class="lg:hidden inline-block mr-2"
+                    class="xl:hidden inline-block mr-2"
                     src="https://img.icons8.com/ios-glyphs/20/20/FFFFFF/login-rounded-right--v1.png"
                 />
                 <span class="flex items-center">Zaloguj się</span>
             </router-link>
 
-            <router-link v-if="!isAuth" to="/register" class="inline-block flex justify-left lg:justify-center lg:w-28 text-sm lg:ml-4 lg:px-2 py-2 lg:border rounded text-white lg:border-white lg:hover:bg-gray-600 lg:mt-0 hover:font-semibold lg:hover:font-normal">
+            <router-link v-if="!isAuth" to="/register" class="inline-block flex justify-left xl:justify-center xl:w-28 text-sm xl:ml-4 xl:px-2 py-2 xl:border rounded text-white xl:border-white xl:hover:bg-gray-600 xl:mt-0 hover:font-semibold xl:hover:font-normal">
                 <img
-                    class="lg:hidden inline-block mr-2"
+                    class="xl:hidden inline-block mr-2"
                     src="https://img.icons8.com/ios-glyphs/20/20/FFFFFF/add-user-male.png"
                 />
                 <span class="flex items-center">Dołącz do nas</span>
@@ -101,7 +103,6 @@ export default {
         return {
             mainMenuIsDropped: false,
             userMenuIsDropped: false,
-            userName: 'Gall Anonim',
         }
     },
 

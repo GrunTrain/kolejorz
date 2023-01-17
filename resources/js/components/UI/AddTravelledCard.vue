@@ -3,7 +3,7 @@
         <div class="flex flex-col space-y-2">
             <p class="font-semibold text-gray-900">Dodać stację do przejechanych?</p>
             <p class="font-semibold text-lg">
-                {{ station.title }}
+                {{ station.name }}
             </p>
         </div>
 

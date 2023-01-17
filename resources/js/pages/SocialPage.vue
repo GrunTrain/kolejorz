@@ -1,22 +1,22 @@
 <template>
-    <div class="bg-gray-800">
-        <div class="flex justify-center">
-            <div class="bg-gray-800 w-full sm:w-2/3 lg:w-1/2 shadow rounded-lg p-6">
-                <textarea class="bg-gray-200 w-full rounded-lg shadow border p-2" rows="5" placeholder="Powiedz nam, co myślisz :)"></textarea>
+<!--    <div class="bg-gray-800">-->
+<!--        <div class="flex justify-center">-->
+<!--            <div class="bg-gray-800 w-full sm:w-2/3 lg:w-1/2 shadow rounded-lg p-6">-->
+<!--                <textarea class="bg-gray-200 w-full rounded-lg shadow border p-2" rows="5" placeholder="Powiedz nam, co myślisz :)"></textarea>-->
 
-                <div class="flex justify-end mt-3">
-                    <button class="float-right font-semibold w-fit bg-yellow-600 hover:bg-yellow-700 text-white p-2 px-3 rounded-lg">
-                        Opublikuj
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
+<!--                <div class="flex justify-end mt-3">-->
+<!--                    <button class="float-right font-semibold w-fit bg-yellow-600 hover:bg-yellow-700 text-white p-2 px-3 rounded-lg">-->
+<!--                        Opublikuj-->
+<!--                    </button>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
 
 
 
     <div class="flex justify-center">
-        <div class="w-2/3 m-5 p-6 bg-gray-800 justify-center rounded-lg">
+        <div class="w-4/5 md:w-2/3 lg:w-3/5 m-5 p-6 bg-gray-800 justify-center rounded-lg">
             <div class="text-xl text-white text-left">{{ name }}</div>
             <div class="mt-2 text-xs border-b border-[#b2f5ea] text-white"></div>
 

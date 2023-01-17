@@ -1,5 +1,5 @@
 <template>
-    <div class="flex flex-col lg:flex-row">
+    <div class="flex justify-center flex-col lg:flex-row">
     <users-list></users-list>
     </div>
 </template>
@@ -11,14 +11,6 @@ import UsersList from "../components/layouts/UsersList.vue";
 export default {
     components: {
         UsersList
-    },
-
-    data() {
-        return {
-        }
-    },
-
-    methods: {
     },
 }
 </script>
