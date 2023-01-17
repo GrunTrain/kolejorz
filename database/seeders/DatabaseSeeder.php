@@ -38,7 +38,7 @@ class DatabaseSeeder extends Seeder
 
     private function addFriends()
     {
-        for ($i = 1; $i <= self::TEST_USERS; $i++) {
+        for ($i = 1; $i <= User::all()->count(); $i++) {
             $numberOfFriends = random_int(2, 5);
             $friends = [];
             for ($j = 0; $j < $numberOfFriends; $j++) {
@@ -47,7 +47,7 @@ class DatabaseSeeder extends Seeder
                     $i == $friendId ||
                     in_array($friendId, $friends)
                 )
-                    $friendId = random_int(1, self::TEST_USERS - 1);
+                    $friendId = random_int(1, User::all()->count());
                 array_push($friends, $friendId);
                 Friend::updateOrCreate(['user_id' => $i, 'observed_id' => $friendId]);
             }
@@ -57,7 +57,7 @@ class DatabaseSeeder extends Seeder
     private function addTours()
     {
         $stations_count = Station::all()->count();
-        for ($i = 1; $i <= self::TEST_USERS; $i++) {
+        for ($i = 1; $i <= User::all()->count(); $i++) {
             $numberOfTours = random_int(1, 5);
             for ($t = 0; $t < $numberOfTours; $t++) {
                 $start = DB::table('stations')
@@ -137,16 +137,17 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         DatabaseSeeder::seedStations();
-        if (self::SEED)
-        {
-            User::create([
+        User::create([
             'name' => "Zielony Mleczarz",
             'email' => "admin@grinmilk.pl",
             'email_verified_at' => now(),
-            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+            'password' => '$2y$10$PvcNK6tpVfH683xZS.kcIOMgGHxqMbu2lzuzKcwFjHKSDvKUWtEyu',
             'remember_token' => Str::random(10),
-            'isAdmin' => 1,]);
-            User::factory(max(self::TEST_USERS, 6))->create();
+            'isAdmin' => 1,
+        ]);
+        if (self::SEED)
+        {
+            User::factory(self::TEST_USERS)->create();
             DatabaseSeeder::addFriends();
             DatabaseSeeder::addTours();
             // for ($i = 1; $i<Station::all()->count();$i++)
