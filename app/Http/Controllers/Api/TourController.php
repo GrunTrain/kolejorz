@@ -150,4 +150,8 @@ class TourController extends Controller
         ]);
     }
 
+    public function show($id) {
+        return TourResource::collection(Tour::where('user_id', $id)->get());
+    }
+
 }
