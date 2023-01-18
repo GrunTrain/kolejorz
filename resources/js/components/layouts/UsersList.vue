@@ -7,7 +7,7 @@
             </button>
         </the-search-window>
         <span v-for="user in filteredUsers" :key="user.id">
-            <users-dashboard :user="user" v-if="!this.friendsIds.includes(user.id) && user.id != this.userId" @add-friend="addFriend"></users-dashboard>
+            <users-dashboard :user="user" v-if="!this.friendsIds.includes(user.id) && user.id !== this.userId" @add-friend="addFriend"></users-dashboard>
         </span>
         <span v-for="user in this.friends" :key="user.id">
             <friends-dashboard :user="user" @delete-friend="deleteFriend"></friends-dashboard>
