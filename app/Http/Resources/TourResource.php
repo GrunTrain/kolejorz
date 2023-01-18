@@ -17,16 +17,11 @@ class TourResource extends JsonResource
      */
     public function toArray($request)
     {
-        $stations = array();
-        foreach (TourStation::where('tour_id', $this->id)->get('station_id') as $tour_station)
-        {
-            array_push($stations, Station::where('id', $tour_station->station_id)->first()->name);
-        }
         return [
-            'stations' => $stations,
-
-            'start_station' => Station::where('id', $this->start_station)->firstOrFail()->name,
-            'destination_station' => Station::where('id', $this->destination_station)->firstOrFail()->name,
+            'id' => $this->id,
+            'user_id' => $this->user_id,
+            'start_station' => $this->start_station,
+            'destination_station' => $this->destination_station,
             'length' => $this->length,
             'description' => $this->description,
         ];

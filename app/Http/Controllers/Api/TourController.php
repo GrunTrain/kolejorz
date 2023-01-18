@@ -98,10 +98,7 @@ class TourController extends Controller
     }
     public function index()
     {
-        $id = Auth::id();
-        $tours = Tour::where('user_id', $id)->get();
-
-        return TourResource::collection($tours);
+        return TourResource::collection(Tour::all());
     }
 
     public function destroy($id)
@@ -151,6 +148,10 @@ class TourController extends Controller
             'len_mean' => (int)$len_mean,
             'public_tours' => $public_tours,
         ]);
+    }
+
+    public function show($id) {
+        return TourResource::collection(Tour::where('user_id', $id)->get());
     }
 
 }

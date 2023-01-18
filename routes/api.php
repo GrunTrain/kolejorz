@@ -6,6 +6,7 @@ use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Api\UserStationController;
 use App\Http\Controllers\Api\StationController;
 use App\Http\Controllers\Api\FriendController;
+use App\Http\Controllers\Api\TourStationController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Laravel\Fortify\Http\Controllers\RegisteredUserController;
@@ -47,4 +48,5 @@ Route::apiResource('tours', TourController::class);
 Route::apiResource('user_stations', UserStationController::class);
 Route::apiResource('stations', StationController::class);
 Route::apiResource('profile', UserController::class);
+Route::apiResource('tour_station', TourStationController::class);
 
