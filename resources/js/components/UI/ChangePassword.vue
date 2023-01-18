@@ -20,9 +20,6 @@
                     <button @click="changePassword" class="top-10 w-full text-white bg-yellow-600 hover:bg-yellow-500 font-semibold rounded-lg text-sm px-5 py-3 text-center">Zmień hasło</button>
                 </div>
             </form>
-            <alert-pop-up v-if="alert">
-                {{ alert }}
-            </alert-pop-up>
         </div>
     </div>
 </template>
@@ -57,7 +54,12 @@ export default {
                     this.password = '';
                     this.password_repeat = '';
                 })
-                this.showAlert('Hasło zostało zmienione!')
+                this.$flashMessage.show({
+                    type: 'info',
+                    time: 2000,
+                    text: "Hasło zostało zmienione!",
+                    image: 'https://img.icons8.com/ios/50/1087c2/steam-engine.png',
+                });
                 this.error = '';
             } else {
                 if (this.password !== this.password_repeat) {

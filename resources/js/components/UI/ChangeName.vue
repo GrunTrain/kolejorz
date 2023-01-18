@@ -47,6 +47,13 @@ export default {
                 }
             });
             this.$emit('set-component', 'change-password');
+            this.$flashMessage.show({
+                type: 'info',
+                time: 2000,
+                text: "Nazwa została zmieniona!",
+                image: 'https://img.icons8.com/ios/50/1087c2/steam-engine.png',
+            });
+
             location.reload();
         }
     }

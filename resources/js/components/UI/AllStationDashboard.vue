@@ -1,7 +1,4 @@
 <template>
-    <alert-pop-up v-if="alert">
-        {{ alert }}
-    </alert-pop-up>
     <div
         v-if="selectedComponent === 'all-station-dashboard'"
         class="flex flex-col my-4 p-3 bg-gray-800 rounded-lg text-white">
@@ -62,7 +59,6 @@ export default {
         return {
             selectedComponent: 'all-station-dashboard',
             userStations: [],
-            alert: ''
         }
     },
     methods: {
@@ -70,12 +66,14 @@ export default {
             this.selectedComponent = component;
         },
         showAlert(alert) {
-            this.alert = alert;
-            setTimeout(this.hideAlert, 2000);
+            this.$flashMessage.show({
+                type: 'info',
+                time: 2000,
+                title: this.station.name,
+                text: alert,
+                image: 'https://img.icons8.com/ios/50/1087c2/steam-engine.png',
+            });
         },
-        hideAlert() {
-            this.alert = '';
-        }
     },
 }
 </script>
