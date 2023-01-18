@@ -16,11 +16,11 @@ const router = createRouter({
     routes: [
         {
             path: '/',
-            redirect: '/all-stations',
+            redirect: '/home',
             component: AllStations,
         },
         {
-            path: '/all-stations',
+            path: '/home',
             component: AllStations,
             name: 'all-stations',
         },
