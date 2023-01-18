@@ -14,30 +14,12 @@
                     <p class="text-[#ffbf00]">przejechana ({{ station.timesPassed }})</p>
                 </div>
             </div>
-            <div class="flex flex-row justify-end">
-                <button @click="deleteStation(station.station_id)" class="flex w-fit mt-2 px-4 p-1 rounded bg-gray-600 hover:bg-red-900">
-                    Usuń
-                    <img class="flex ml-2 mt-1" src="https://img.icons8.com/ios/15/FFFFFF/delete--v1.png"/>
-                </button>
-
-            </div>
-
         </div>
     </div>
 </template>
 
 <script>
-import axios from 'axios';
-
 export default {
     props: ['station'],
-
-    methods: {
-        deleteStation(id) {
-            axios.delete('/api/user_stations/' + id).then(() => {
-                location.reload();
-            })
-        }
-    }
 }
 </script>
