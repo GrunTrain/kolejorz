@@ -44,7 +44,7 @@
                     <input
                         v-model="agreement"
                         type="checkbox" class="w-4 h-4">
-                    <label class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Czy chcesz dodać post?</label>
+                    <label class="ml-2 text-sm font-medium text-gray-300 ">Czy chcesz dodać post?</label>
                 </div>
 
                 <p v-if="agreement" class="font-semibold py-2">Opis:</p>

@@ -32,8 +32,8 @@ export default {
     data() {
         return {
             stationData: {
-                station_id: this.station.idStr,
-                name: this.station.title,
+                station_id: this.station.id,
+                name: this.station.name,
                 lat: this.station.lat,
                 lon: this.station.lon,
                 status: 0
