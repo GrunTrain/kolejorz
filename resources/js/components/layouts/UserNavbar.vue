@@ -26,19 +26,19 @@
         <div class="flex flex-col py-4">
             <button
                 @click="$emit('set-component', 'statistics')"
-                class="hover:bg-yellow-500 bg-transparent p-3 text-left text-white font-semibold">
+                class="hover:bg-yellow-500 bg-transparent p-3 text-left text-white font-semibold text-lg">
                 <img class="float-right w-5" src="https://img.icons8.com/ios/30/FFFFFF/statistics--v1.png"/>
                 Statystyki
             </button>
             <button
                 @click="$emit('set-component', 'change-password')"
-                class="hover:bg-yellow-500 bg-transparent p-3 text-left text-white font-semibold">
+                class="hover:bg-yellow-500 bg-transparent p-3 text-left text-white font-semibold text-lg">
                 <img class="float-right w-5" src="https://img.icons8.com/ios/30/FFFFFF/lock--v1.png"/>
                 Zmień hasło
             </button>
             <button
                 @click="$emit('set-component', 'change-name')"
-                class="hover:bg-yellow-500 bg-transparent p-3 text-left text-white font-semibold">
+                class="hover:bg-yellow-500 bg-transparent p-3 text-left text-white font-semibold text-lg">
                 <img class="float-right w-5" src="https://img.icons8.com/ios/30/FFFFFF/user--v1.png"/>
                 Zmień nazwę
             </button>

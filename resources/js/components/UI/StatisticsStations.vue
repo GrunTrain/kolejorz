@@ -1,11 +1,30 @@
 <template>
-    <div class="flex-row">
-    <p>favourite_station: {{favourite_station}}</p>
-    <p>favourite_station_records: {{favourite_station_records}}</p>
-    <p>stations_passed: {{stations_passed}}</p>
-    <p>stations_visited: {{stations_visited}}</p>
-    <p>total_passes: {{total_passes}}</p>
-    <p>total_visits: {{total_visits}}</p>
+    <div class="flex justify-center items-center lg:justify-start lg:items-start flex-col p-6 space-y-2">
+        <div class="flex w-full rounded-xl p-6 bg-gradient-to-r from-gray-800 to-slate-800 text-lg font-semibold text-white">
+            <p class="mr-1">Ulubiona stacja - </p>
+            <p class="text-teal-400 font-bold">{{favourite_station}}</p>
+        </div>
+
+        <div class="flex w-full rounded-xl p-6 bg-gradient-to-r from-gray-800 to-slate-800 text-lg font-semibold text-white">
+            <p class="mr-1">Ilość wizyt na ulubionej stacji - </p>
+            <p class="text-teal-400 font-bold">{{favourite_station_records}}</p>
+        </div>
+        <div class="flex w-full rounded-xl p-6 bg-gradient-to-r from-yellow-800 to-yellow-600 text-lg font-semibold text-white">
+            <p class="mr-1">Ilość stacji przejechanych - </p>
+            <p class="text-yellow-500 font-bold">{{stations_passed}}</p>
+        </div>
+        <div class="flex w-full rounded-xl p-6 bg-gradient-to-r from-yellow-800 to-yellow-600 text-lg font-semibold text-white">
+            <p class="mr-1">Ilość przejazdów łącznie - </p>
+            <p class="text-yellow-500 font-bold">{{total_passes}}</p>
+        </div>
+        <div class="flex w-full rounded-xl p-6 bg-gradient-to-r from-green-900 to-green-600 text-lg font-semibold text-white">
+            <p class="mr-1">Ilość stacji odwiedzonych - </p>
+            <p class="text-green-300 font-bold">{{stations_visited}}</p>
+        </div>
+        <div class="flex w-full rounded-xl p-6 bg-gradient-to-r from-green-900 to-green-600 text-lg font-semibold text-white">
+            <p class="mr-1">Ilość wizyt łącznie - </p>
+            <p class="text-green-300 font-bold">{{total_visits}}</p>
+        </div>
     </div>
 </template>
 

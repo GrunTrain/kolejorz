@@ -1,7 +1,7 @@
 <template>
-    <nav class="static w-full h-flex flex-col items-center justify-between flex-wrap bg-gray-800 px-8">
-    <base-button @click="$emit('set-sub-component', 'stations')" class="bg-gray-600">Stacje</base-button>
-    <base-button @click="$emit('set-sub-component', 'tours')" class="bg-gray-600">Wycieczki</base-button>
+    <nav class="static w-full bg-gray-700 lg:px-3 flex justify-center lg:justify-start flex-wrap">
+        <button @click="$emit('set-sub-component', 'statistics-stations')" class="text-white text-lg font-semibold py-2 w-1/3 md:w-1/4 lg:w-1/6 my-4 mr-2 rounded-lg bg-gray-800">Stacje</button>
+        <button @click="$emit('set-sub-component', 'statistics-tours')" class="text-white text-lg font-semibold py-2 w-1/3 md:w-1/4 lg:w-1/6 my-4 rounded-lg bg-gray-800">Wycieczki</button>
     </nav>
 </template>
 
