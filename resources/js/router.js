@@ -10,6 +10,7 @@ import UserPage from "./pages/UserPage.vue";
 import FriendsPage from "./pages/FriendsPage.vue";
 import TourPage from "./pages/TourPage.vue";
 import AdminPage from "./pages/AdminPage.vue";
+import MyTours from "./pages/MyTours.vue";
 
 const router = createRouter({
     history: createWebHistory(),
@@ -66,6 +67,12 @@ const router = createRouter({
             component: TourPage,
             name: 'tour-page'
         },
+        {
+            path: '/my-tours',
+            component: MyTours,
+            name: 'my-tours'
+        },
+
         {
             path: '/admin',
             component: AdminPage,

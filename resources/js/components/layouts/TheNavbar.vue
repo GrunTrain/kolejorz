@@ -26,16 +26,16 @@
                 <router-link to="/" @click="dropMainMenu" class="block mt-6 xl:inline-block xl:mt-0 text-teal-200 xl:ml-12 font-semibold hover:text-teal-100">
                     Wszystkie stacje
                 </router-link>
-                <router-link v-if="isAuth" to="/my-stations" @click="dropMainMenu" class="block mt-6 xl:inline-block xl:mt-0 text-teal-200 xl:ml-12 font-semibold hover:text-teal-100">
+                <router-link v-if="isAuth" :to="{name: 'my-stations'}" @click="dropMainMenu" class="block mt-6 xl:inline-block xl:mt-0 text-teal-200 xl:ml-12 font-semibold hover:text-teal-100">
                     Moje stacje
                 </router-link>
-                <router-link to="#" v-if="isAuth" @click="dropMainMenu" class="block mt-6 xl:inline-block xl:mt-0 text-teal-200 xl:ml-12 font-semibold hover:text-teal-100">
+                <router-link v-if="isAuth" :to="{name: 'my-tours'}" @click="dropMainMenu" class="block mt-6 xl:inline-block xl:mt-0 text-teal-200 xl:ml-12 font-semibold hover:text-teal-100">
                     Moje wycieczki
                 </router-link>
-                <router-link v-if="isAuth" to="/tour" class="block mt-6 xl:inline-block xl:mt-0 text-teal-200 xl:ml-12 font-semibold hover:text-teal-100">
+                <router-link v-if="isAuth" :to="{name: 'tour-page'}" @click="dropMainMenu" class="block mt-6 xl:inline-block xl:mt-0 text-teal-200 xl:ml-12 font-semibold hover:text-teal-100">
                     Dodaj wycieczkę
                 </router-link>
-                <router-link v-if="isAuth" :to="{name: 'social-page'}" class="block mt-6 xl:inline-block xl:mt-0 text-teal-200 xl:ml-12 font-semibold hover:text-teal-100">
+                <router-link v-if="isAuth" :to="{name: 'social-page'}" @click="dropMainMenu" class="block mt-6 xl:inline-block xl:mt-0 text-teal-200 xl:ml-12 font-semibold hover:text-teal-100">
                     Tablica
                 </router-link>
 
@@ -45,7 +45,7 @@
                 <button
                     @click="dropUserMenu"
                     class="flex items-center text-sm font-medium text-white hover:text-gray-300 rounded-full" type="button">
-                    <img class="mr-2 rounded-full" src="https://img.icons8.com/external-kiranshastry-lineal-kiranshastry/35/88E8D9/external-user-interface-kiranshastry-lineal-kiranshastry.png"/>
+                    <img class="mr-2 rounded-full w-12" :src="'https://source.boringavatars.com/beam/48/' + user.name + '?colors=72BCA5,F4DDB4,F1AE2B,BC0B27,1BBECD'" alt="Zdjęcie profilowe">
                     {{ user.name }}
                     <svg class="w-4 h-4 mx-1.5" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
                 </button>
@@ -64,7 +64,7 @@
                             <router-link :to="{ name: 'friends' }" @click="dropBothMenu" class="block px-4 py-2 hover:bg-gray-600 hover:text-white">Obserwowani</router-link>
                         </li>
                         <li v-if="this.user.isAdmin">
-                            <router-link to="/admin" @click="dropBothMenu" class="block px-4 py-2 hover:bg-gray-600 text-white">Admin Panel</router-link>
+                            <router-link :to="{ name: 'admin' }" @click="dropBothMenu" class="block px-4 py-2 hover:bg-gray-600 text-white">Admin Panel</router-link>
                         </li>
                     </ul>
                     <div class="py-1 hover:cursor-pointer">
@@ -74,7 +74,7 @@
             </div>
 
 
-            <router-link v-if="!isAuth" to="/login" class="inline-block flex justify-left xl:justify-center xl:w-28 text-sm xl:px-2 py-2 xl:border rounded xl:bg-white text-white xl:text-black xl:border-white xl:hover:bg-gray-300 mt-8 xl:mt-0 hover:font-semibold xl:hover:font-normal">
+            <router-link v-if="!isAuth" :to="{ name: 'login-page' }"  class="inline-block flex justify-left xl:justify-center xl:w-28 text-sm xl:px-2 py-2 xl:border rounded xl:bg-white text-white xl:text-black xl:border-white xl:hover:bg-gray-300 mt-8 xl:mt-0 hover:font-semibold xl:hover:font-normal">
                 <img
                     class="xl:hidden inline-block mr-2"
                     src="https://img.icons8.com/ios-glyphs/20/20/FFFFFF/login-rounded-right--v1.png"
@@ -82,7 +82,7 @@
                 <span class="flex items-center">Zaloguj się</span>
             </router-link>
 
-            <router-link v-if="!isAuth" to="/register" class="inline-block flex justify-left xl:justify-center xl:w-28 text-sm xl:ml-4 xl:px-2 py-2 xl:border rounded text-white xl:border-white xl:hover:bg-gray-600 xl:mt-0 hover:font-semibold xl:hover:font-normal">
+            <router-link v-if="!isAuth" :to="{ name: 'register-page' }" class="inline-block flex justify-left xl:justify-center xl:w-28 text-sm xl:ml-4 xl:px-2 py-2 xl:border rounded text-white xl:border-white xl:hover:bg-gray-600 xl:mt-0 hover:font-semibold xl:hover:font-normal">
                 <img
                     class="xl:hidden inline-block mr-2"
                     src="https://img.icons8.com/ios-glyphs/20/20/FFFFFF/add-user-male.png"

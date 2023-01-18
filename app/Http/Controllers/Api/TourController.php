@@ -96,10 +96,14 @@ class TourController extends Controller
             'alert' => "Dodano wycieczkę!",
         ]);
     }
-    public function index(Request $request)
+    public function index()
     {
-        return TourResource::collection(Tour::all());
+        $id = Auth::id();
+        $tours = Tour::where('user_id', $id)->get();
+
+        return TourResource::collection($tours);
     }
+
     public function destroy($id)
     {
         $tour = Tour::where('id', $id)->first();
@@ -148,4 +152,5 @@ class TourController extends Controller
             'public_tours' => $public_tours,
         ]);
     }
+
 }
