@@ -39,12 +39,6 @@ export default {
         }
     },
 
-    methods: {
-        clearInput() {
-            this.searchInput = '';
-        }
-    },
-
     computed: {
         filteredUsers() {
             return this.users.filter(user => {
@@ -78,6 +72,9 @@ export default {
         deleteFriend(toDelete){
             axios.delete("/api/profile/friends/" + toDelete)
             this.reload()
+        },
+        clearInput() {
+            this.searchInput = '';
         }
     }
 }

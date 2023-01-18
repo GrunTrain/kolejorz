@@ -42,6 +42,7 @@ Route::get('profile/friends/{id}', [FriendController::class, 'friendsByUserId'])
 Route::delete('profile/friends/{id}', [FriendController::class, 'deleteFriend']);
 Route::post('profile/friends', [FriendController::class, 'addFriendToCurrentUser']);
 Route::get('profile/active', [UserController::class, 'activeUser']);
+
 Route::apiResource('tours', TourController::class);
 Route::apiResource('user_stations', UserStationController::class);
 Route::apiResource('stations', StationController::class);
