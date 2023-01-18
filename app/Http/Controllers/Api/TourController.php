@@ -98,10 +98,7 @@ class TourController extends Controller
     }
     public function index()
     {
-        $id = Auth::id();
-        $tours = Tour::where('user_id', $id)->get();
-
-        return TourResource::collection($tours);
+        return TourResource::collection(Tour::all());
     }
 
     public function destroy($id)
