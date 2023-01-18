@@ -15,7 +15,7 @@
                     </p>
                 </div>
                 <div class="flex items-center justify-end sm:space-x-0">
-                    <button @click="$emit('send-name', station.name)" title="Dodaj do przejechanych">
+                    <button @click="$emit('send-name', station.name)" title="Dodaj do wycieczki">
                         <img class="rounded hover:bg-gray-600 py-3 px-2"
                              src="https://img.icons8.com/ios-filled/20/FFFFFF/plus--v1.png"/>
                     </button>
