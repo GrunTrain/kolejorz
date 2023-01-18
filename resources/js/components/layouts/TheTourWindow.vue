@@ -59,10 +59,6 @@
                     </p>
                 </base-button>
 
-                <alert-pop-up v-if="alert">
-                    {{ alert }}
-                </alert-pop-up>
-
             </div>
         </div>
 
@@ -116,11 +112,11 @@ export default {
                     description: this.description,
                 }
             }).then((response) => {
-                this.middle = [];
                 this.date = '';
                 this.description = '';
                 this.error = '';
-                this.showAlert(response.data.alert);
+                this.showAlert(response.data.alert, this.middle[0], this.middle[this.middle.length - 1]);
+                this.middle = [];
             }).catch((error) => {
                 this.error = error.response.data.errors
             })
@@ -130,14 +126,15 @@ export default {
             this.middle.splice(index, 1)
         },
 
-        showAlert(alert) {
-            this.alert = alert;
-            setTimeout(this.hideAlert, 2000);
+        showAlert(alert, start, end) {
+            this.$flashMessage.show({
+                type: 'info',
+                time: 2000,
+                title: start + " -> " + end,
+                text: alert,
+                image: 'https://img.icons8.com/ios/50/1087c2/steam-engine.png',
+            });
         },
-
-        hideAlert() {
-            this.alert = '';
-        }
     }
 }
 </script>

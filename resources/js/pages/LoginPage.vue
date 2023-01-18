@@ -85,6 +85,12 @@ export default {
 
             await axios.post('/api/login', this.loginForm).then(() => {
                 this.$router.push({ name: "all-stations" });
+                this.$flashMessage.show({
+                    type: 'info',
+                    time: 3000,
+                    title: "Zalogowano",
+                    image: 'https://img.icons8.com/ios/50/1087c2/steam-engine.png',
+                });
             }).catch((error) =>{
                 this.errors = error.response.data.errors
             })

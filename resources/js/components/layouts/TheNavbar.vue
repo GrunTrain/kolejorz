@@ -149,7 +149,14 @@ export default {
                 this.dropMainMenu();
             }
             this.logout();
-            this.$router.push({name: 'login-page'})
+            this.$router.push({name: 'login-page'});
+            this.$flashMessage.show({
+                type: 'info',
+                time: 3000,
+                title: "Wylogowano",
+                image: 'https://img.icons8.com/ios/50/1087c2/steam-engine.png',
+            });
+
         }
     }
 }

@@ -1,6 +1,8 @@
 <template>
     <the-navbar></the-navbar>
     <router-view></router-view>
+    <FlashMessage position="right bottom" strategy="multiple" class="absolute z-20"/>
+
 </template>
 
 <script>
