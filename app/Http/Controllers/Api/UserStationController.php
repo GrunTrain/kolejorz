@@ -79,6 +79,8 @@ class  UserStationController extends Controller
         $stations_visited = 0;
         $total_passes = 0;
         $total_visits = 0;
+        $stations_already_passed = array();
+        $stations_already_visited = array();
 
         foreach ($stations as $station)
         {
@@ -87,8 +89,14 @@ class  UserStationController extends Controller
                 $favourite_station_records = $station->times_passed + $station->times_visited;
                 $favourite_station = Station::where('id', $station->station_id)->first()->name;
             }
-            if ($station->times_passed) $stations_passed++;
-            if ($station->times_visited) $stations_visited++;
+            if ($station->times_passed && !in_array($station->id, $stations_already_passed)) {
+                $stations_passed++;
+                array_push($stations_already_passed, $station->id);
+            }
+            if ($station->times_visited && !in_array($station->id, $stations_already_visited)) {
+                $stations_visited++;
+                array_push($stations_already_visited, $station->id);
+            }
             $total_passes += $station->times_passed;
             $total_visits += $station->times_visited;
         }
