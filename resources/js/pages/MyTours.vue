@@ -6,14 +6,12 @@
 
 <script>
 export default {
-
     data() {
         return {
             tours: [],
             stations: [],
         }
     },
-
     methods: {
         getTours() {
             axios.get('/api/profile/active').then(response => {
@@ -25,7 +23,6 @@ export default {
                         })
                     });
                 })
-
             })
         },
         getStations(){
@@ -34,11 +31,9 @@ export default {
             })
         }
     },
-
     mounted() {
         this.getStations();
         this.getTours();
     }
 }
 </script>
-

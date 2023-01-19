@@ -1,10 +1,26 @@
 <template>
-    <div class="flex-row">
-    <p>tours_amount: {{tours_amount}}</p>
-    <p>tour_shortest: {{tour_shortest}}</p>
-    <p>tour_longest: {{tour_longest}}</p>
-    <p>tour_mean: {{tour_mean}}</p>
-    <p>tour_public: {{tour_public}}</p>
+    <div class="flex justify-center items-center lg:justify-start lg:items-start flex-col p-6 space-y-2">
+        <div class="flex w-full rounded-xl p-6 bg-gray-800 text-lg font-semibold text-white">
+            <p class="mr-1">Ilość wycieczek - </p>
+            <p class="text-teal-400 font-bold">{{tours_amount}}</p>
+        </div>
+
+        <div class="flex w-full rounded-xl p-6 bg-gray-800 text-lg font-semibold text-white">
+            <p class="mr-1">Ilość stacji w najkrótszej wycieczce - </p>
+            <p class="text-teal-400 font-bold">{{tour_shortest}}</p>
+        </div>
+        <div class="flex w-full rounded-xl p-6 bg-gray-800 text-lg font-semibold text-white">
+            <p class="mr-1">Ilość stacji w najdłuższej wycieczce - </p>
+            <p class="text-teal-400 font-bold">{{tour_longest}}</p>
+        </div>
+        <div class="flex w-full rounded-xl p-6 bg-gray-800 text-lg font-semibold text-white">
+            <p class="mr-1">Średnia liczba stacji w wycieczce - </p>
+            <p class="text-teal-400 font-bold">{{tour_mean}}</p>
+        </div>
+        <div class="flex w-full rounded-xl p-6 bg-gray-800 text-lg font-semibold text-white">
+            <p class="mr-1">Opublikowane wycieczki - </p>
+            <p class="text-teal-400 font-bold">{{tour_public}}</p>
+        </div>
     </div>
 </template>
 
@@ -18,7 +34,7 @@ export default {
             tour_longest: 0,
             tour_mean: 0,
             tour_public: 0,
-            }
+        }
     },
 
     mounted() {

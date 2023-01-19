@@ -1,9 +1,9 @@
 <template>
     <div class="flex-row">
         <div>
-           <input v-model="this.id" type="text" placeholder="id">
-           <input v-model="this.observer" type="text" placeholder="observer">
-           <input v-model="this.observed" type="text" placeholder="observed">
+            <input v-model="this.id" type="text" placeholder="id">
+            <input v-model="this.observer" type="text" placeholder="observer">
+            <input v-model="this.observed" type="text" placeholder="observed">
         </div>
     <span v-for="friend in filteredFriends" :key="friend.id">
             <p v-if="this.edited.id != friend.id">{{friend.id}} {{this.users[friend.user_id]["name"]}} {{this.users[friend.observed_id]["name"]}} <base-button @click="setEdited(friend.id)">Edytuj</base-button></p>
@@ -19,9 +19,7 @@
 </template>
 
 <script>
-
 export default {
-
     data() {
         return {
             users: [],
@@ -36,7 +34,6 @@ export default {
             },
         }
     },
-
     mounted() {
         axios.get("/api/profile").then((response) =>
         {
@@ -44,7 +41,6 @@ export default {
         })
         this.getFriends()
     },
-
     computed:{
         filteredFriends() {
             return this.friends.filter((friend) => {
@@ -54,7 +50,6 @@ export default {
             })
         }
     },
-
     methods:{
         deleteFriend(id){
             axios.delete("/api/friends/"+id).then(response =>{

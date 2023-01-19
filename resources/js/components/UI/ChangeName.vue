@@ -46,7 +46,7 @@ export default {
                     name: this.name
                 }
             });
-            this.$emit('set-component', 'change-password');
+
             this.$flashMessage.show({
                 type: 'info',
                 time: 2000,

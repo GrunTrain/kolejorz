@@ -1,6 +1,6 @@
 <template>
     <div class="flex-row">
-           <div>
+        <div>
             <input v-model="this.id" type="text" placeholder="id">
             <input v-model="this.user" type="text" placeholder="user">
             <input v-model="this.start" type="text" placeholder="start">
@@ -17,9 +17,7 @@
 </template>
 
 <script>
-
 export default {
-
     data() {
         return {
             tours: [],
@@ -38,7 +36,6 @@ export default {
             }
         }
     },
-
     mounted() {
         axios.get("/api/profile").then((response) =>
         {
@@ -54,7 +51,6 @@ export default {
         })
         this.getTours()
     },
-
     methods:{
         getTours(){    
             axios.get("/api/tours").then((response) =>

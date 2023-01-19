@@ -7,6 +7,7 @@ use App\Http\Controllers\Api\UserStationController;
 use App\Http\Controllers\Api\StationController;
 use App\Http\Controllers\Api\FriendController;
 use App\Http\Controllers\Api\TourStationController;
+use App\Http\Controllers\SocialAuthController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Laravel\Fortify\Http\Controllers\RegisteredUserController;
@@ -52,3 +53,5 @@ Route::apiResource('stations', StationController::class);
 Route::apiResource('profile', UserController::class);
 Route::apiResource('tour_station', TourStationController::class);
 
+Route::get('/login/github', [SocialAuthController::class, 'githubRedirect']);
+Route::get('/login/github/callback', [SocialAuthController::class, 'githubCallback']);
