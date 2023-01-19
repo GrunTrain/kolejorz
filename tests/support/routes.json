@@ -241,6 +241,150 @@
       "POST"
     ]
   },
+  "friends.index": {
+    "name": "friends.index",
+    "domain": null,
+    "action": "App\\Http\\Controllers\\Api\\FriendController@index",
+    "uri": "api/friends",
+    "method": [
+      "GET",
+      "HEAD"
+    ]
+  },
+  "friends.store": {
+    "name": "friends.store",
+    "domain": null,
+    "action": "App\\Http\\Controllers\\Api\\FriendController@store",
+    "uri": "api/friends",
+    "method": [
+      "POST"
+    ]
+  },
+  "friends.show": {
+    "name": "friends.show",
+    "domain": null,
+    "action": "App\\Http\\Controllers\\Api\\FriendController@show",
+    "uri": "api/friends/{friend}",
+    "method": [
+      "GET",
+      "HEAD"
+    ]
+  },
+  "friends.update": {
+    "name": "friends.update",
+    "domain": null,
+    "action": "App\\Http\\Controllers\\Api\\FriendController@update",
+    "uri": "api/friends/{friend}",
+    "method": [
+      "PUT",
+      "PATCH"
+    ]
+  },
+  "friends.destroy": {
+    "name": "friends.destroy",
+    "domain": null,
+    "action": "App\\Http\\Controllers\\Api\\FriendController@destroy",
+    "uri": "api/friends/{friend}",
+    "method": [
+      "DELETE"
+    ]
+  },
+  "tours.index": {
+    "name": "tours.index",
+    "domain": null,
+    "action": "App\\Http\\Controllers\\Api\\TourController@index",
+    "uri": "api/tours",
+    "method": [
+      "GET",
+      "HEAD"
+    ]
+  },
+  "tours.store": {
+    "name": "tours.store",
+    "domain": null,
+    "action": "App\\Http\\Controllers\\Api\\TourController@store",
+    "uri": "api/tours",
+    "method": [
+      "POST"
+    ]
+  },
+  "tours.show": {
+    "name": "tours.show",
+    "domain": null,
+    "action": "App\\Http\\Controllers\\Api\\TourController@show",
+    "uri": "api/tours/{tour}",
+    "method": [
+      "GET",
+      "HEAD"
+    ]
+  },
+  "tours.update": {
+    "name": "tours.update",
+    "domain": null,
+    "action": "App\\Http\\Controllers\\Api\\TourController@update",
+    "uri": "api/tours/{tour}",
+    "method": [
+      "PUT",
+      "PATCH"
+    ]
+  },
+  "tours.destroy": {
+    "name": "tours.destroy",
+    "domain": null,
+    "action": "App\\Http\\Controllers\\Api\\TourController@destroy",
+    "uri": "api/tours/{tour}",
+    "method": [
+      "DELETE"
+    ]
+  },
+  "user_stations.index": {
+    "name": "user_stations.index",
+    "domain": null,
+    "action": "App\\Http\\Controllers\\Api\\UserStationController@index",
+    "uri": "api/user_stations",
+    "method": [
+      "GET",
+      "HEAD"
+    ]
+  },
+  "user_stations.store": {
+    "name": "user_stations.store",
+    "domain": null,
+    "action": "App\\Http\\Controllers\\Api\\UserStationController@store",
+    "uri": "api/user_stations",
+    "method": [
+      "POST"
+    ]
+  },
+  "user_stations.show": {
+    "name": "user_stations.show",
+    "domain": null,
+    "action": "App\\Http\\Controllers\\Api\\UserStationController@show",
+    "uri": "api/user_stations/{user_station}",
+    "method": [
+      "GET",
+      "HEAD"
+    ]
+  },
+  "user_stations.update": {
+    "name": "user_stations.update",
+    "domain": null,
+    "action": "App\\Http\\Controllers\\Api\\UserStationController@update",
+    "uri": "api/user_stations/{user_station}",
+    "method": [
+      "PUT",
+      "PATCH"
+    ]
+  },
+  "user_stations.destroy": {
+    "name": "user_stations.destroy",
+    "domain": null,
+    "action": "App\\Http\\Controllers\\Api\\UserStationController@destroy",
+    "uri": "api/user_stations/{user_station}",
+    "method": [
+      "DELETE"
+    ]
+  },
   "stations.index": {
     "name": "stations.index",
     "domain": null,
@@ -285,6 +429,54 @@
     "domain": null,
     "action": "App\\Http\\Controllers\\Api\\StationController@destroy",
     "uri": "api/stations/{station}",
+    "method": [
+      "DELETE"
+    ]
+  },
+  "profile.index": {
+    "name": "profile.index",
+    "domain": null,
+    "action": "App\\Http\\Controllers\\Api\\UserController@index",
+    "uri": "api/profile",
+    "method": [
+      "GET",
+      "HEAD"
+    ]
+  },
+  "profile.store": {
+    "name": "profile.store",
+    "domain": null,
+    "action": "App\\Http\\Controllers\\Api\\UserController@store",
+    "uri": "api/profile",
+    "method": [
+      "POST"
+    ]
+  },
+  "profile.show": {
+    "name": "profile.show",
+    "domain": null,
+    "action": "App\\Http\\Controllers\\Api\\UserController@show",
+    "uri": "api/profile/{profile}",
+    "method": [
+      "GET",
+      "HEAD"
+    ]
+  },
+  "profile.update": {
+    "name": "profile.update",
+    "domain": null,
+    "action": "App\\Http\\Controllers\\Api\\UserController@update",
+    "uri": "api/profile/{profile}",
+    "method": [
+      "PUT",
+      "PATCH"
+    ]
+  },
+  "profile.destroy": {
+    "name": "profile.destroy",
+    "domain": null,
+    "action": "App\\Http\\Controllers\\Api\\UserController@destroy",
+    "uri": "api/profile/{profile}",
     "method": [
       "DELETE"
     ]
