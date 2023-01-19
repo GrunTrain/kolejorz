@@ -74,7 +74,7 @@ export default {
             errors: {}
         }
     },
-    methods:{
+    methods: {
         register(){
             axios.post('/api/register', this.registerForm).then(() => {
                 this.$router.push({ name: "login-page" });
@@ -89,6 +89,11 @@ export default {
                 this.errors = error.response.data.errors
             })
         }
+    },
+    created() {
+        axios.get("/api/profile/active").then(response => {
+            if (response.data.data.id) this.$router.push({ name: "not-found" });
+        })
     }
 }
 </script>
