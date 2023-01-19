@@ -34,6 +34,7 @@ describe('Register test',() => {
     });
     it('Email in use', () => {
         cy.visit('/register')
+        cy.create('App\\Models\\User',{email:'kekw@example.com',name:'lamo'})
         cy.get('.flex-col > .mt-8').type('lamo')
         cy.get('[type="email"]').type('kekw@example.com')
         cy.get(':nth-child(3) > .p-2').type('password')
