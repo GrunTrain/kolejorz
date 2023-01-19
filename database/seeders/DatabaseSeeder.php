@@ -26,7 +26,8 @@ class DatabaseSeeder extends Seeder
 
     private function seedStations()
     {
-        $json = json_decode(file_get_contents("resources/js/stations.json"), true);
+        //$json = json_decode(file_get_contents("..\\resources\\js\\stations.json"), true); //when testint you need to change path to that
+        $json = json_decode(file_get_contents("/resources/js/stations.json"), true); 
         foreach ($json as &$station) {
             Station::updateOrCreate([
                 'name' => $station['name'],
