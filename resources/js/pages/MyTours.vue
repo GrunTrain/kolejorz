@@ -70,6 +70,7 @@ export default {
         getStations(){
             axios.get('/api/stations').then(response => {
                 this.stations = response.data.data
+                this.$refs.TheMap.isFetched(true);
             });
         },
 
@@ -78,7 +79,6 @@ export default {
                 .then(response => {
                     response.data.data.forEach(station => {
                         this.stationsData.push(station)
-                        this.$refs.TheMap.isFetched(true);
                     })
                 })
                 .catch(error => {
