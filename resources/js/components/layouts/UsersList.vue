@@ -43,7 +43,8 @@ export default {
     computed: {
         filteredUsers() {
             return this.users.filter(user => {
-                return user.name.toLowerCase().includes(this.searchInput.toLowerCase());
+                return user.name.toLowerCase().includes(this.searchInput.toLowerCase()) &&
+                       !user.idPublic;
             })
         },
     },

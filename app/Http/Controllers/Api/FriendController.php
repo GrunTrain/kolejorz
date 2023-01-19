@@ -45,4 +45,12 @@ class FriendController extends Controller
     public function deleteFriend($id){
         Friend::where(['user_id' => Auth::id(), 'observed_id' => $id])->first()->delete();
     }
+
+    public function store(Request $request){
+        $friend = Friend::where('id', $request->input('id'))->first();
+        $friend->update([
+            'user_id' => $request->input('user_id'),
+            'observed_id' => $request->input('observed_id'),
+        ]);
+    }
 }

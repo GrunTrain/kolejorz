@@ -29,6 +29,10 @@ export default {
         setSelectedComponent(component) {
             this.currentComponent = component;
         }
+    }, mounted(){
+        axios.get("/api/profile/active").then(response => {
+            if (!response.data.data.isAdmin) this.$router.push({ name: "all-stations" });
+        })
     }
 }
 </script>

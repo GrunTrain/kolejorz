@@ -39,10 +39,12 @@ Route::post('login', [AuthenticatedSessionController::class, 'store']);
 
 Route::apiResource('friends', FriendController::class);
 Route::get('tours/statistics', [TourController::class, 'statistics']);
+Route::get('tours/friends', [TourController::class, 'friendsTours']);
 Route::get('profile/friends/{id}', [FriendController::class, 'friendsByUserId']);
 Route::delete('profile/friends/{id}', [FriendController::class, 'deleteFriend']);
 Route::post('profile/friends', [FriendController::class, 'addFriendToCurrentUser']);
 Route::get('profile/active', [UserController::class, 'activeUser']);
+Route::post('tours/admin', [TourController::class, 'storeAdmin']);
 
 Route::apiResource('tours', TourController::class);
 Route::apiResource('user_stations', UserStationController::class);
