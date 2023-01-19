@@ -96,7 +96,12 @@ export default {
                 this.errors = error.response.data.errors
             })
 
-            this.setAuth;
+            await axios.get('/api/user')
+                .then(response => {
+                    if (response.data) {
+                        this.setAuth;
+                    }
+                }).catch(() => {});
         },
     },
 }

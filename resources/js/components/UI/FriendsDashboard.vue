@@ -5,7 +5,9 @@
               <p class="font-semibold lg:text-xl">
                 {{ user.name }}
               </p>
-              <base-button @click="$emit('delete-friend', user.id)">-</base-button>
+              <base-button class="flex justify-end" @click="$emit('delete-friend', user.id)">
+                  <img class="px-2" src="https://img.icons8.com/ios-filled/25/FFFFFF/minus--v1.png"/>
+              </base-button>
 
         </div>
     </div>
