@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\UserResource;
 use App\Models\User;
 use App\Models\Tour;
+use App\Models\Friend;
 use App\Models\TourStation;
 use App\Models\UserStation;
 use Illuminate\Http\Request;
@@ -54,6 +55,8 @@ class UserController extends Controller
         {
             $user_station->delete();
         }
+        Friend::where('user_id', $id)->get()->delete();
+        Friend::where('observed_id', $id)->get()->delete();
         $user->delete();
     }
     public function activeUser()

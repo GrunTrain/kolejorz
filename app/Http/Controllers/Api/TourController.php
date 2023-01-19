@@ -8,6 +8,7 @@ use App\Http\Resources\TourResource;
 use App\Http\Controllers\Controller;
 use App\Models\Station;
 use App\Models\Tour;
+use App\Models\Friend;
 use App\Models\TourStation;
 use App\Models\UserStation;
 
@@ -152,6 +153,21 @@ class TourController extends Controller
 
     public function show($id) {
         return TourResource::collection(Tour::where('user_id', $id)->get());
+    }
+
+    public function friendsTours(){
+        $id = Auth::id();
+        $friends = Friend::where('user_id', $id)->get();
+        $tours = array();
+        foreach ($friends as $friend){
+            foreach (Tour::where('user_id', $friend->observed_id)->where('is_public', 1)->get() as $tour)
+                array_push($tours, $tour);
+        }
+        return TourResource::collection($tours);
+    }
+
+    public function storeAdmin(Request $request){
+        //to be done
     }
 
 }
