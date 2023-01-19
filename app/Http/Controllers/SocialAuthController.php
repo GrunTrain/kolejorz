@@ -22,26 +22,6 @@ class SocialAuthController extends Controller
         return Redirect::to('http://localhost/');
     }
 
-    public function googleRedirect()
-    {
-        return Socialite::driver('google')->stateless()->redirect();
-    }
-
-    public function googleCallback(Request $request)
-    {
-        $user = Socialite::driver('google')->stateless()->user();
-
-        $data = User::where('email', $user->email)->first();
-        if(is_null($data)) {
-            $users['name'] = $user->name;
-            $users['email'] = $user->email;
-            $users['password'] = '$2y$10$92IXUNpkjO0rOQdd5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi';
-            $data = User::create($users);
-        }
-        Auth::login($data);
-        return Redirect::to('http://localhost/');
-    }
-
     public function createOrUpdateUser($data, $provider) {
         $user = User::where('email', $data->email)->first();
 
@@ -51,9 +31,9 @@ class SocialAuthController extends Controller
             ]);
         } else {
             $user = User::create([
-                    'name'=>$data->nickname,
-                    'email'=>$data->email,
-                    'password' => '$2y$10$92IXUNpkjO0rOQdd5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi',
+                'name'=>$data->nickname,
+                'email'=>$data->email,
+                'password' => '$2y$10$92IXUNpkjO0rOQdd5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi',
             ]);
         }
 

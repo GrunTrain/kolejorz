@@ -55,6 +55,3 @@ Route::apiResource('tour_station', TourStationController::class);
 
 Route::get('/login/github', [SocialAuthController::class, 'githubRedirect']);
 Route::get('/login/github/callback', [SocialAuthController::class, 'githubCallback']);
-
-Route::get('/login/google', [SocialAuthController::class, 'googleRedirect']);
-Route::get('/login/google/callback', [SocialAuthController::class, 'googleCallback']);
