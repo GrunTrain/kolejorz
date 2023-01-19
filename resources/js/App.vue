@@ -26,9 +26,8 @@ export default {
         }),
     },
 
-    mounted() {
+    created() {
         this.setAuth;
     },
-
 }
 </script>

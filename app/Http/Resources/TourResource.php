@@ -25,6 +25,7 @@ class TourResource extends JsonResource
             'length' => $this->length,
             'description' => $this->description,
             'data' => $this->data,
+            'date' => $this->date
         ];
     }
 }

@@ -14,11 +14,11 @@
                 <div class="flex flex-col">
                     <div
                         v-for="(station, index) in middle" :key="index"
-                        :class="(index === 0 || index === middle.length - 1) ? 'border-2 border-green-600' : 'border border-yellow-500'"
+                        :class="(index === 0 || index === middle.length - 1) ? 'border-2 border-[#14b8a6]' : 'border border-yellow-500'"
                         class="flex flex-col text-white rounded-lg my-2 p-2">
 
                         <div
-                            :class="(index === 0 || index === middle.length - 1) ? 'text-green-600 font-bold' : 'text-yellow-500 font-semibold'"
+                            :class="(index === 0 || index === middle.length - 1) ? 'text-[#14b8a6] font-bold' : 'text-yellow-500 font-semibold'"
                              class="flex items-center">
 
                             <img v-if="index === 0" class="rounded hover:bg-gray-600 py-2 px-1" src="https://img.icons8.com/ios/20/FFFFFF/home--v1.png"/>
