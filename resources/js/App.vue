@@ -26,7 +26,7 @@ export default {
         }),
     },
 
-    created() {
+    mounted() {
         this.setAuth;
     },
 }
