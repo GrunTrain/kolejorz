@@ -104,10 +104,5 @@ export default {
                 }).catch(() => {});
         },
     },
-    created() {
-        axios.get("/api/profile/active").then(response => {
-            if (response.data.data.id) this.$router.push({ name: "all-stations" });
-        })
-    }
 }
 </script>

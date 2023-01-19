@@ -90,10 +90,5 @@ export default {
             })
         }
     },
-    created() {
-        axios.get("/api/profile/active").then(response => {
-            if (response.data.data.id) this.$router.push({ name: "not-found" });
-        })
-    }
 }
 </script>
